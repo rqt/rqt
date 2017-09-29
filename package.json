@@ -1,7 +1,7 @@
 {
   "name": "rqt",
   "version": "0.1.0",
-  "description": "A new package created with mnp",
+  "description": "request library",
   "main": "src/index.js",
   "scripts": {
     "test": "zoroaster test/spec",
@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/Sobesednik/rqt#readme",
   "devDependencies": {
-    "zoroaster": "0.4.4"
+    "zoroaster": "0.4.6"
   }
 }

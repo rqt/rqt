@@ -1,8 +1,8 @@
 /**
  * Invoke package's main function
  */
-function myNewPackage() {
-    console.log('my-new-package called')
+function rqt() {
+    console.log('rqt called')
 }
 
-module.exports = myNewPackage
+module.exports = rqt

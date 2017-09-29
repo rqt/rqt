@@ -1,4 +1,4 @@
-## 0.1.0 (22 May)
+## 0.1.0 (29 May)
 
-- Create `my-new-package`: a package created with `mnp`
+- Create `rqt`: a package created with `mnp`
 - [repo]: `test`, `src`

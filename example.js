@@ -1,3 +1,3 @@
-const myNewPackage = require('./')
+const rqt = require('./')
 
-myNewPackage()
+rqt()

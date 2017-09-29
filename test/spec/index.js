@@ -1,15 +1,15 @@
 const assert = require('assert')
-const myNewPackage = require('../../src/')
+const rqt = require('../../src/')
 
-const myNewPackageTestSuite = {
+const rqtTestSuite = {
     'should be a function': () => {
-        assert.equal(typeof myNewPackage, 'function')
+        assert.equal(typeof rqt, 'function')
     },
     'should call package without error': () => {
         assert.doesNotThrow(() => {
-            myNewPackage()
+            rqt()
         })
     },
 }
 
-module.exports = myNewPackageTestSuite
+module.exports = rqtTestSuite

@@ -1,17 +1,17 @@
-# my-new-package
+# rqt
 
-`my-new-package` is a new Node.js npm package.
+`rqt` is a Node.js request library.
 
-## `myNewPackage():void`
+## `rqt():void`
 
 Call this function to get a result you want.
 
 ```js
-const myNewPackage = require('my-new-package')
+const rqt = require('rqt')
 
-myNewPackage()
+rqt()
 ```
 
 ---
 
-(c) Sobesednik-Media 2017
+(c) [sobes.io](https://sobes.io) 2017
