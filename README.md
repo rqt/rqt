@@ -2,14 +2,17 @@
 
 `rqt` is a Node.js request library.
 
-## `rqt():void`
+## `rqt(url):Promise.<string>`
 
-Call this function to get a result you want.
+Call this function to request a web page.
 
 ```js
 const rqt = require('rqt')
 
-rqt()
+rqt('http://rqt.sobes.io')
+    .then((res) => {
+        console.log(res) // web page
+    })
 ```
 
 ---

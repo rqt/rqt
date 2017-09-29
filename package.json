@@ -21,6 +21,10 @@
   },
   "homepage": "https://github.com/Sobesednik/rqt#readme",
   "devDependencies": {
+    "server-destroy": "1.0.1",
     "zoroaster": "0.4.6"
+  },
+  "dependencies": {
+    "catchment": "1.0.0"
   }
 }
