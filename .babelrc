@@ -1,0 +1,33 @@
+{
+    "presets": [
+        ["env", {
+            "exclude": [
+                "transform-regenerator",
+                "transform-async-to-generator"
+            ],
+            "modules": false,
+            "debug": true,
+            "targets": {
+                "node": 4
+            }
+        }]
+    ],
+    "plugins": [
+        ["fast-async", {
+            "spec": true
+        }],
+        ["transform-rename-import", [{
+            "original": "erotic",
+            "replacement": "erotic/es5/src"
+        },
+        {
+            "original": "../../package.json",
+            "replacement": "../../../package.json"
+        },
+        {
+            "original": "../package.json",
+            "replacement": "../../package.json"
+        }
+        ]]
+    ]
+}
