@@ -36,6 +36,7 @@
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-plugin-search-and-replace": "0.3.0",
+    "babel-plugin-transform-rename-import": "2.1.1",
     "babel-preset-env": "1.6.1",
     "fast-async": "6.3.0",
     "npm-run-all": "4.1.2",
@@ -43,7 +44,6 @@
     "zoroaster": "0.4.6"
   },
   "dependencies": {
-    "babel-plugin-transform-rename-import": "2.1.1",
     "catchment": "1.0.0",
     "erotic": "0.2.0"
   }
