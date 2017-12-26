@@ -35,7 +35,6 @@
   "homepage": "https://github.com/Sobesednik/rqt#readme",
   "devDependencies": {
     "babel-cli": "6.26.0",
-    "babel-plugin-search-and-replace": "0.3.0",
     "babel-plugin-transform-rename-import": "2.1.1",
     "babel-preset-env": "1.6.1",
     "fast-async": "6.3.0",
