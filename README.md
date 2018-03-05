@@ -1,17 +1,10 @@
 # rqt
 
+[![npm version](https://badge.fury.io/js/rqt.svg)](https://badge.fury.io/js/rqt)
+
 `rqt` is a Node.js request library.
 
-## ES5
-
-The package uses some newer language features. For your convenience, it's been
-transpiled to be compatible with Node 4. You can use the following snippet.
-
-```js
-const rqt = require('rqt/es5/src/')
-```
-
-## `rqt(url: string) => Promise.<string>`
+## `async rqt(url: string): string`
 
 Call this function to request a web page.
 
@@ -53,6 +46,16 @@ const rqt = require('rqt')
 })()
 ```
 
+
+## ES5
+
+The package uses some newer language features. For your convenience, it's been
+transpiled to be compatible with Node 4. You can use the following snippet.
+
+```js
+const rqt = require('rqt/es5')
+```
+
 ---
 
-(c) [sobes.io](https://sobes.io) 2017
+(c) [sobes.io](https://sobes.io) 2018
