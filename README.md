@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/rqt.svg)](https://badge.fury.io/js/rqt)
 
-`rqt` is a Node.js request library.
+`rqt` is a Node.js request library. Send `GET` and `POST` requests at ease.
 
 ## `async rqt(url: string): string`
 
@@ -16,7 +16,7 @@ const rqt = require('rqt')
 })()
 ```
 
-## `rqt(url: string, { data: string, contentType: string }) => Promise.<string>`
+## `async rqt(url: string, { data: string, contentType: string }): string`
 
 Send a post request (with default `JSON` content type and calculated
 `Content-Length`). Assign more headers with `headers` option.
@@ -45,7 +45,6 @@ const rqt = require('rqt')
     })
 })()
 ```
-
 
 ## ES5
 
