@@ -33,7 +33,7 @@ function rqt(address) {
     options = {
       hostname: opts.hostname,
       port: opts.port,
-      path: opts.pathname,
+      path: opts.path,
       headers
     };
 
