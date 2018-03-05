@@ -7,9 +7,9 @@
     "test": "zoroaster test/spec",
     "test-es5": "zoroaster es5/test/spec",
     "test-watch": "zoroaster test/spec --watch",
-    "build-src": "babel src --out-dir es5/src",
-    "build-test": "babel test --out-dir es5/test",
-    "build": "run-s build-src build-test"
+    "build-src": "bestie src",
+    "build-test": "bestie test",
+    "build": "bestie"
   },
   "engines": {
     "node": ">=4"
@@ -34,10 +34,7 @@
   },
   "homepage": "https://github.com/Sobesednik/rqt#readme",
   "devDependencies": {
-    "babel-cli": "6.26.0",
-    "babel-plugin-transform-rename-import": "2.1.1",
-    "babel-preset-env": "1.6.1",
-    "fast-async": "6.3.0",
+    "bestie": "^1.0.0",
     "npm-run-all": "4.1.2",
     "server-destroy": "1.0.1",
     "zoroaster": "0.4.6"
