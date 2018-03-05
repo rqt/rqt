@@ -23,7 +23,7 @@ async function rqt(address, {
     const options = {
         hostname: opts.hostname,
         port: opts.port,
-        path: opts.pathname,
+        path: opts.path,
         headers,
     }
     if (data) {
