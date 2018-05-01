@@ -1,3 +1,5 @@
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 var _require = require('http'),
     http = _require.request;
 
@@ -21,11 +23,11 @@ var _require3 = require("../../package.json"),
 function rqt(address) {
   var $args = arguments;
   return new Promise(function ($return, $error) {
-    var _ref, _ref$data, data, _ref$contentType, contentType, _ref$headers, headers, er, opts, isHttps, request, options, result;
+    var _ref, _ref$data, data, _ref$contentType, contentType, _ref$headers, headers, binary, er, opts, isHttps, request, options, result;
 
     _ref = $args.length > 1 && $args[1] !== undefined ? $args[1] : {}, _ref$data = _ref.data, data = _ref$data === void 0 ? null : _ref$data, _ref$contentType = _ref.contentType, contentType = _ref$contentType === void 0 ? 'application/json' : _ref$contentType, _ref$headers = _ref.headers, headers = _ref$headers === void 0 ? {
       'User-Agent': `Mozilla/5.0 (Node.js) rqt/${version}`
-    } : _ref$headers;
+    } : _ref$headers, binary = _ref.binary;
     er = erotic();
     opts = url.parse(address);
     isHttps = opts.protocol === 'https:';
@@ -39,7 +41,7 @@ function rqt(address) {
 
     if (data) {
       options.method = 'POST';
-      options.headers = Object.assign({}, options.headers, {
+      options.headers = _extends({}, options.headers, {
         'Content-Type': contentType,
         'Content-Length': Buffer.byteLength(data)
       });
@@ -49,7 +51,9 @@ function rqt(address) {
       var req = request(options, function (res) {
         return new Promise(function ($return, $error) {
           var catchment, r, parsed, err;
-          catchment = new Catchment();
+          catchment = new Catchment({
+            binary
+          });
           res.pipe(catchment);
           return Promise.resolve(catchment.promise).then(function ($await_2) {
             try {
