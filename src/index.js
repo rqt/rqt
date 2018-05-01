@@ -15,6 +15,7 @@ async function rqt(address, {
   headers = {
     'User-Agent': `Mozilla/5.0 (Node.js) rqt/${version}`,
   },
+  binary,
 } = {}) {
   const er = erotic()
   const opts = url.parse(address)
@@ -28,16 +29,17 @@ async function rqt(address, {
   }
   if (data) {
     options.method = 'POST'
-    options.headers = Object.assign({}, options.headers, {
+    options.headers = {
+      ...options.headers,
       'Content-Type': contentType,
       'Content-Length': Buffer.byteLength(data),
-    })
+    }
   }
   const result = await new Promise((resolve, reject) => {
     const req = request(
       options,
       async (res) => {
-        const catchment = new Catchment()
+        const catchment = new Catchment({ binary })
         res.pipe(catchment)
         const r = await catchment.promise
         if (res.headers['content-type'] === 'application/json') {

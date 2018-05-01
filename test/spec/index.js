@@ -1,4 +1,4 @@
-const assert = require('assert')
+const { assert, equal, deepEqual, throws } = require('zoroaster/assert')
 const rqt = require('../../src/')
 const context = require('../context/')
 const { version } = require('../../package.json')
@@ -6,23 +6,22 @@ const { version } = require('../../package.json')
 const rqtTestSuite = {
   context,
   async 'should be a function'() {
-    assert.equal(typeof rqt, 'function')
+    equal(typeof rqt, 'function')
   },
   async 'should request data from server' (ctx) {
     const testData = 'test-data'
     ctx.data = testData
     const res = await rqt(ctx.url)
     assert(ctx.params.called)
-    assert.equal(res, testData)
+    equal(res, testData)
   },
   async 'should fail'() {
     const url = `http://not-a-valid-web-page-${Math.floor(Math.random() * 10000)}.io`
-    try {
-      await rqt(url)
-      throw new Error('Should have thrown an error')
-    } catch (err) {
-      assert.equal(err.code, 'ENOTFOUND')
-    }
+    await throws({
+      fn: rqt,
+      args: [url],
+      code: 'ENOTFOUND',
+    })
   },
   async 'should request data from https'() {
     const url = 'https://google.com'
@@ -36,7 +35,7 @@ const rqtTestSuite = {
       contentType: 'application/x-www-form-urlencoded',
     })
     assert(ctx.params.called)
-    assert.equal(res, data)
+    equal(res, data)
   },
   async 'should parse json data'(ctx) {
     const rawData = { data: 'test post data' }
@@ -45,7 +44,7 @@ const rqtTestSuite = {
       data,
     })
     assert(ctx.params.called)
-    assert.deepEqual(res, rawData)
+    deepEqual(res, rawData)
   },
   async 'should reject when cannot parse json data'(ctx) {
     const data = 'not-json-data'
@@ -69,7 +68,7 @@ const rqtTestSuite = {
         'x-test': testHeader,
       },
     })
-    assert.equal(ctx.params.headers['x-test'], testHeader)
+    equal(ctx.params.headers['x-test'], testHeader)
   },
   async 'should send user-agent'(ctx) {
     const expected = `Mozilla/5.0 (Node.js) rqt/${version}`
@@ -77,11 +76,20 @@ const rqtTestSuite = {
       data: 'test',
       contentType: 'application/x-www-form-urlencoded',
     })
-    assert.equal(ctx.params.headers['user-agent'], expected)
+    equal(ctx.params.headers['user-agent'], expected)
   },
   async 'should request github data'() {
     const res = await rqt('https://api.github.com/users/octocat/orgs')
-    assert.equal(res, '[]')
+    equal(res, '[]')
+  },
+  async 'should return binary data'(ctx) {
+    ctx.data = 'test buffer'
+    const expected = new Buffer(ctx.data)
+    const res = await rqt(ctx.url, {
+      binary: true,
+    })
+    assert(res instanceof Buffer)
+    deepEqual(res, expected)
   },
 }
 

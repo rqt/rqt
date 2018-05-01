@@ -4,7 +4,7 @@
 
 `rqt` is a Node.js request library. Send `GET` and `POST` requests at ease.
 
-## `async rqt(url: string): string`
+## `async rqt(url: string, options: Options = {}): string`
 
 Call this function to request a web page.
 
@@ -12,9 +12,33 @@ Call this function to request a web page.
 const rqt = require('rqt')
 
 (async () => {
-    const res = await rqt('http://rqt.adc.sh/') // web page contents returned
+  const res = await rqt('http://rqt.adc.sh/')
+  // web page contents returned
 })()
 ```
+
+It is possible to pass some options as the second argument.
+
+```js
+const rqt = require('rqt')
+
+(async () => {
+  const bufferRes = await rqt('http://rqt.adc.sh/', {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Node.js) rqt',
+    },
+    binary: true,
+  })
+})()
+```
+
+### `headers: object`
+
+An object to be assigned as request headers.
+
+### `binary: boolean`
+
+If set to true, a Buffer will be returned instead of a string.
 
 ## `async rqt(url: string, { data: string, contentType: string }): string`
 
@@ -25,10 +49,10 @@ Send a post request (with default `JSON` content type and calculated
 const rqt = require('rqt')
 
 (async () => {
-    const res = await rqt('http://rqt.adc.sh/post/', {
-        data: JSON.stringify({ data: 'test-post-data' }),
-        contentType: 'application/json', // default is assumed json
-    })
+  const res = await rqt('http://rqt.adc.sh/post/', {
+    data: JSON.stringify({ data: 'test-post-data' }),
+    contentType: 'application/json', // default is assumed json
+  })
 })()
 ```
 
@@ -36,13 +60,13 @@ const rqt = require('rqt')
 const rqt = require('rqt')
 
 (async () => {
-    const res = await rqt('http://rqt.adc.sh/post/headers', {
-        data: 'test post data',
-        contentType: 'application/x-www-form-urlencoded', // non-json request
-        headers: {
-            'x-token': 'token123',
-        },
-    })
+  const res = await rqt('http://rqt.adc.sh/post/headers', {
+    data: 'test post data',
+    contentType: 'application/x-www-form-urlencoded', // non-json request
+    headers: {
+      'x-token': 'token123',
+    },
+  })
 })()
 ```
 
