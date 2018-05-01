@@ -6,6 +6,12 @@
 - [feature] add `binary` option to pass to `catchment`.
 - [docs] update readme to describe options for `GET`.
 
+## 5 March 2018
+
+### 1.0.0
+
+- [bugfix] when parsing, use `path` instead of `pathname`
+
 ## 0.1.0 (29 May)
 
 - Create `rqt`: a package created with `mnp`
