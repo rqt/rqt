@@ -2,7 +2,7 @@ var http = require('http');
 
 var enableDestroy = require('server-destroy');
 
-var Catchment = require('catchment');
+var Catchment = require("catchment/es5");
 
 var createHandler = function createHandler() {
   var getEndData = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {

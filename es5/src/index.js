@@ -4,7 +4,7 @@ var _require = require('http'),
 var _require2 = require('https'),
     https = _require2.request;
 
-var Catchment = require('catchment');
+var Catchment = require("catchment/es5");
 
 var url = require('url');
 

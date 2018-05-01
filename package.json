@@ -5,10 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "zoroaster test/spec",
-    "test-es5": "zoroaster es5/test/spec",
+    "test-es5": "zoroaster-es5 es5/test/spec",
     "test-watch": "zoroaster test/spec --watch",
-    "build-src": "bestie src",
-    "build-test": "bestie test",
     "build": "bestie"
   },
   "engines": {
@@ -34,13 +32,12 @@
   },
   "homepage": "https://github.com/artdecocode/rqt#readme",
   "devDependencies": {
-    "bestie": "^1.0.0",
-    "npm-run-all": "4.1.2",
+    "bestie": "1.0.0",
     "server-destroy": "1.0.1",
-    "zoroaster": "0.4.6"
+    "zoroaster": "1.0.1"
   },
   "dependencies": {
-    "catchment": "1.0.0",
+    "catchment": "2.0.1",
     "erotic": "0.2.0"
   }
 }

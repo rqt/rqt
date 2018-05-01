@@ -46,6 +46,14 @@
         "replacement": "erotic/es5/src"
       },
       "replace-erotic"
+    ],
+    [
+      "transform-rename-import",
+      {
+        "original": "catchment",
+        "replacement": "catchment/es5"
+      },
+      "replace-catchment"
     ]
   ]
 }
