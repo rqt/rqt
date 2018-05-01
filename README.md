@@ -12,7 +12,7 @@ Call this function to request a web page.
 const rqt = require('rqt')
 
 (async () => {
-    const res = await rqt('http://rqt.sobes.io/') // web page contents returned
+    const res = await rqt('http://rqt.adc.sh/') // web page contents returned
 })()
 ```
 
@@ -25,7 +25,7 @@ Send a post request (with default `JSON` content type and calculated
 const rqt = require('rqt')
 
 (async () => {
-    const res = await rqt('http://rqt.sobes.io/post/', {
+    const res = await rqt('http://rqt.adc.sh/post/', {
         data: JSON.stringify({ data: 'test-post-data' }),
         contentType: 'application/json', // default is assumed json
     })
@@ -36,7 +36,7 @@ const rqt = require('rqt')
 const rqt = require('rqt')
 
 (async () => {
-    const res = await rqt('http://rqt.sobes.io/post/headers', {
+    const res = await rqt('http://rqt.adc.sh/post/headers', {
         data: 'test post data',
         contentType: 'application/x-www-form-urlencoded', // non-json request
         headers: {
@@ -57,4 +57,4 @@ const rqt = require('rqt/es5')
 
 ---
 
-(c) [sobes.io](https://sobes.io) 2018
+(c) [Art Deco Code](https://artdeco.bz) 2018
