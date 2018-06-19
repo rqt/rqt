@@ -1,59 +1,25 @@
 {
-  "presets": [
-    [
-      "@babel/env",
-      {
-        "exclude": [
-          "transform-regenerator",
-          "transform-async-to-generator"
-        ],
-        "modules": false,
-        "debug": true,
-        "targets": {
-          "node": 4
-        }
-      }
-    ]
-  ],
   "plugins": [
-    "@babel/plugin-proposal-object-rest-spread",
-    [
-      "module:fast-async",
-      {
-        "spec": true
-      }
-    ],
-    [
-      "transform-rename-import",
-      {
-        "original": "../../package.json",
-        "replacement": "../../../package.json"
-      },
-      "replace-package-1"
-    ],
-    [
-      "transform-rename-import",
-      {
-        "original": "../package.json",
-        "replacement": "../../package.json"
-      },
-      "replace-package-2"
-    ],
-    [
-      "transform-rename-import",
-      {
-        "original": "erotic",
-        "replacement": "erotic/es5/src"
-      },
-      "replace-erotic"
-    ],
-    [
-      "transform-rename-import",
-      {
-        "original": "catchment",
-        "replacement": "catchment/es5"
-      },
-      "replace-catchment"
-    ]
-  ]
+    "@babel/plugin-syntax-object-rest-spread",
+    "@babel/plugin-transform-modules-commonjs"
+  ],
+  "env": {
+    "test-build": {
+      "plugins": [
+        [
+          "transform-rename-import",
+          {
+            "original": "^((../)+)src",
+            "replacement": "$1build"
+          }
+        ]
+      ],
+      "ignore": [
+        "build/**/*.js"
+      ]
+    },
+    "debug": {
+      "retainLines": true
+    }
+  }
 }
