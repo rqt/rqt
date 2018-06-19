@@ -1,5 +1,9 @@
 ## 19 June 2018
 
+### 1.2.1
+
+- [fix] Also parse `json` if response header includes charset.
+
 ### 1.2.0
 
 - [feature] `returnHeaders` to fetch response headers also.
