@@ -53,7 +53,7 @@ export default async function rqt(address, config = {}) {
         res.pipe(catchment)
         const r = await catchment.promise
         h = res.headers
-        if (res.headers['content-type'] === 'application/json') {
+        if (h['content-type'].startsWith('application/json')) {
           try {
             const parsed = JSON.parse(r)
             resolve(parsed)

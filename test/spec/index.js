@@ -62,7 +62,7 @@ const T = {
       })
       throw new Error('Should have thrown an error')
     } catch ({ postData, message, stack }) {
-      assert.equal(postData, data)
+      equal(postData, data)
       assert(/Unexpected token o/.test(message))
       assert(/ at rejects when cannot parse json data/.test(stack))
     }
@@ -90,7 +90,7 @@ const T = {
   },
   async 'requests github data'() {
     const res = await rqt('https://api.github.com/users/octocat/orgs')
-    equal(res, '[]')
+    deepEqual(res, [])
   },
   async 'returns binary data'({ url, setData }) {
     const d = 'test buffer'

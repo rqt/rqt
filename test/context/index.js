@@ -52,7 +52,7 @@ export default class Context {
       const { promise } = catchment
       this.state.postPromise = promise
       if (this.state.json) {
-        res.writeHead(200, { 'Content-Type': 'application/json', ...this.headers })
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...this.headers })
       } else {
         res.writeHead(200, { 'Content-Type': 'text/plain', ...this.headers })
       }
