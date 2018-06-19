@@ -7,10 +7,7 @@
     "test": "zoroaster test/spec",
     "test-es5": "zoroaster-es5 es5/test/spec",
     "test-watch": "zoroaster test/spec --watch",
-    "build": "bestie"
-  },
-  "engines": {
-    "node": ">=4"
+    "build": "babel src --out-dir build"
   },
   "repository": {
     "type": "git",
@@ -32,12 +29,17 @@
   },
   "homepage": "https://github.com/artdecocode/rqt#readme",
   "devDependencies": {
-    "bestie": "1.0.0",
+    "@babel/cli": "7.0.0-beta.51",
+    "@babel/core": "7.0.0-beta.51",
+    "@babel/plugin-syntax-object-rest-spread": "7.0.0-beta.51",
+    "@babel/plugin-transform-modules-commonjs": "7.0.0-beta.51",
+    "@babel/register": "7.0.0-beta.51",
+    "babel-plugin-transform-rename-import": "2.2.0",
     "server-destroy": "1.0.1",
-    "zoroaster": "1.0.1"
+    "zoroaster": "2.1.0"
   },
   "dependencies": {
     "catchment": "2.0.1",
-    "erotic": "0.2.0"
+    "erotic": "1.2.1"
   }
 }
