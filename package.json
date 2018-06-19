@@ -4,10 +4,11 @@
   "description": "request library",
   "main": "build",
   "scripts": {
+    "t": "zoroaster -b",
     "test": "zoroaster test/spec -b",
     "test-watch": "zoroaster test/spec -b -w",
     "test-build": "BABEL_ENV=test-build yarn t test/spec",
-    "build": "babel src --out-dir build"
+    "build": "babel src --out-dir build --source-maps"
   },
   "repository": {
     "type": "git",
