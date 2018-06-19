@@ -1,3 +1,11 @@
+## 19 June 2018
+
+### 1.2.0
+
+- [feature] `returnHeaders` to fetch response headers also.
+- [doc] Add jsdoc.
+- [package] Build with `babel`, eslint, test context
+
 ## 1 May 2018
 
 ### 1.1.0
