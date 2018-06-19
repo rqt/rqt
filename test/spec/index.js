@@ -9,11 +9,11 @@ const T = {
   async 'should be a function'() {
     equal(typeof rqt, 'function')
   },
-  async 'requests data from server' ({ setData, getParams, url }) {
+  async 'requests data from server' ({ setData, getState, url }) {
     const data = 'test-data'
     setData(data)
     const res = await rqt(url)
-    const { called } = getParams()
+    const { called } = getState()
     ok(called)
     equal(res, data)
   },
@@ -30,23 +30,23 @@ const T = {
     const res = await rqt(url)
     assert(/The document has moved/.test(res))
   },
-  async 'sends post data'({ getParams, url }) {
+  async 'sends post data'({ getState, url }) {
     const data = 'test post data'
     const res = await rqt(url, {
       data,
       contentType: 'application/x-www-form-urlencoded',
     })
-    const { called } = getParams()
+    const { called } = getState()
     ok(called)
     equal(res, data)
   },
-  async 'parses json data'({ url, getParams }) {
+  async 'parses json data'({ url, getState }) {
     const d = { data: 'test post data' }
     const data = JSON.stringify(d)
     const res = await rqt(url, {
       data,
     })
-    const { called } = getParams()
+    const { called } = getState()
     ok(called)
     deepEqual(res, d)
   },
@@ -67,7 +67,7 @@ const T = {
       assert(/ at rejects when cannot parse json data/.test(stack))
     }
   },
-  async 'sends headers'({ url, getParams }) {
+  async 'sends headers'({ url, getState }) {
     const testHeader = 'test post header'
     await rqt(url, {
       data: 'test',
@@ -76,16 +76,16 @@ const T = {
         'x-test': testHeader,
       },
     })
-    const { headers } = getParams()
+    const { headers } = getState()
     equal(headers['x-test'], testHeader)
   },
-  async 'sends user-agent'({ url, getParams }) {
+  async 'sends user-agent'({ url, getState }) {
     const expected = `Mozilla/5.0 (Node.js) rqt/${version}`
     await rqt(url, {
       data: 'test',
       contentType: 'application/x-www-form-urlencoded',
     })
-    const { headers } = getParams()
+    const { headers } = getState()
     equal(headers['user-agent'], expected)
   },
   async 'requests github data'() {
@@ -101,6 +101,20 @@ const T = {
     })
     assert(res instanceof Buffer)
     deepEqual(res, expected)
+  },
+  async 'returns headers'({ setData, url, setHeaders }) {
+    const data = 'test-response'
+    const header = 'hello-world'
+    setHeaders({
+      'x-test': header,
+    })
+    setData(data)
+    const { body, headers } = await rqt(url, {
+      returnHeaders: true,
+    })
+    equal(body, data)
+    ok(headers)
+    equal(headers['x-test'], header)
   },
 }
 
