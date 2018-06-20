@@ -8,6 +8,10 @@
 
 %TOC%
 
+## API
+
+The package can be used from Node.js.
+
 ```### async rqt => string
 [
   ["url", "string"],
@@ -93,6 +97,48 @@ import rqt from 'rqt'
   ["`method`", "string", "An HTTP method to use for sending data."],
   ["`...`", "", "All other options from the request function."]
 ]
+```
+
+```### Session
+```
+
+The `Session` class allows to remember the cookies during subsequent requests. It will maintain an internal state and update cookies when necessary.
+
+
+```#### constructor => Session
+[
+  ["headers", "object"]
+]
+```
+
+Create an instance of a `Session` class. All headers specified here will be present for each request (unless overridden by the `request` method).
+
+```#### async request => any
+[
+  ["location", "string"],
+  ["options", "object"]
+]
+```
+
+Request a page. All options are the same as accepted by the `rqt` functions.
+
+```js
+const session = new Session({
+  headers: {
+    'User-Agent': USER_AGENT,
+  },
+})
+const { SessionKey } = await session.request('http://127.0.0.1/Session.ashx')
+
+const { body, headers } = await session.request('http://127.0.0.1/Login.aspx', {
+  data: {
+    LoginUserName: 'test',
+    LoginPassword: 'test',
+    sessionEncryptValue: SessionKey,
+  },
+  type: 'form',
+  returnHeaders: true,
+})
 ```
 
 ---

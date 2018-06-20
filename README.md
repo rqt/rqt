@@ -7,8 +7,15 @@
 ## Table Of Contents
 
 - [Table Of Contents](#table-of-contents)
+- [API](#api)
   * [`async rqt(url: string, options: object): string`](#async-rqturl-stringoptions-headers-o--bbinary-b--o-string)
   * [`async rqtWithData(url: string, options: object): string`](#async-rqtwithdataurl-stringoptions-data-s--ttype-j--smethod-p--o-string)
+    * [`constructor(headers: object): Session`](#constructorheaders-object-session)
+    * [`async request(location: string, options: object): any`](#async-requestlocation-stringoptions-object-any)
+
+## API
+
+The package can be used from Node.js.
 
 ### `async rqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options: {`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`headers: o = b,`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`binary: b = o,`<br/>&nbsp;&nbsp;`},`<br/>`): string`
 
@@ -76,6 +83,38 @@ import rqt from 'rqt'
 | `type` | form|json | How to encode data. The following are supported: set `form` for `application/x-www-form-urlencoded` and `json` for `application/json`. |
 | `method` | string | An HTTP method to use for sending data. |
 | `...` |  | All other options from the request function. |
+
+### `Session(): void`
+
+The `Session` class allows to remember the cookies during subsequent requests. It will maintain an internal state and update cookies when necessary.
+
+
+#### `constructor(`<br/>&nbsp;&nbsp;`headers: object,`<br/>`): Session`
+
+Create an instance of a `Session` class. All headers specified here will be present for each request (unless overridden by the `request` method).
+
+#### `async request(`<br/>&nbsp;&nbsp;`location: string,`<br/>&nbsp;&nbsp;`options: object,`<br/>`): any`
+
+Request a page. All options are the same as accepted by the `rqt` functions.
+
+```js
+const session = new Session({
+  headers: {
+    'User-Agent': USER_AGENT,
+  },
+})
+const { SessionKey } = await session.request('http://127.0.0.1/Session.ashx')
+
+const { body, headers } = await session.request('http://127.0.0.1/Login.aspx', {
+  data: {
+    LoginUserName: 'test',
+    LoginPassword: 'test',
+    sessionEncryptValue: SessionKey,
+  },
+  type: 'form',
+  returnHeaders: true,
+})
+```
 
 ---
 
