@@ -5,14 +5,14 @@ import Catchment from 'catchment'
 export default class Context {
   constructor() {
     this.called = 0
-    this.data = '200'
+    this._response = 'OK'
     this.headers = {}
 
     this.state = {
       postPromise: null,
       called: 0,
-      json: false,
       headers: {},
+      postData: null,
     }
   }
   async _destroy() {
@@ -21,11 +21,14 @@ export default class Context {
       this.server.on('close', resolve)
     })
   }
+  get response() {
+    return this._response
+  }
   getState() {
     return this.state
   }
-  setData(data) {
-    this.data = data
+  setResponse(data) {
+    this._response = data
   }
   setHeaders(headers) {
     this.headers = headers
@@ -41,26 +44,32 @@ export default class Context {
     this.address = server.address()
     this.url = `http://${this.address.address}:${this.address.port}`
   }
+  setContentType(contentType) {
+    this.contentType = contentType
+  }
 
   async handler(req, res) {
     this.state.called += 1
-    this.state.json = req.headers['content-type'] == 'application/json'
     this.state.headers = req.headers
-    if (req.method == 'POST') {
+
+    res.writeHead(200, { 'Content-Type': this.contentType || 'text/plain', ...this.headers })
+
+    if (req.method != 'GET') {
       const catchment = new Catchment
       req.pipe(catchment)
       const { promise } = catchment
-      this.state.postPromise = promise
-      if (this.state.json) {
-        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...this.headers })
-      } else {
-        res.writeHead(200, { 'Content-Type': 'text/plain', ...this.headers })
-      }
-      const data = await promise
-      res.end(data)
-    } else {
-      res.writeHead(200, { 'Content-Type': 'text/plain', ...this.headers })
-      res.end(this.data)
+      const postData = await promise
+      this.state.postData = postData
+    }
+
+    res.end(this._response)
+  }
+
+  get data() {
+    return {
+      hello: 'world',
+      login: 'user',
+      password: 123456,
     }
   }
 }

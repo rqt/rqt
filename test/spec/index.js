@@ -6,16 +6,16 @@ import { version } from '../../package.json'
 /** @type {Object.<string, (c: Context)>} */
 const T = {
   context: Context,
-  async 'should be a function'() {
+  async 'is a function'() {
     equal(typeof rqt, 'function')
   },
-  async 'requests data from server' ({ setData, getState, url }) {
-    const data = 'test-data'
-    setData(data)
+  async 'requests data from server' ({ setResponse, getState, url }) {
+    const expected = 'test-data'
+    setResponse(expected)
     const res = await rqt(url)
     const { called } = getState()
     ok(called)
-    equal(res, data)
+    equal(res, expected)
   },
   async 'fails when ENOTFOUND'() {
     const url = `http://not-a-valid-web-page-${Math.floor(Math.random() * 10000)}.io`
@@ -30,39 +30,52 @@ const T = {
     const res = await rqt(url)
     assert(/The document has moved/.test(res))
   },
-  async 'sends post data'({ getState, url }) {
-    const data = 'test post data'
-    const res = await rqt(url, {
-      data,
-      contentType: 'application/x-www-form-urlencoded',
-    })
-    const { called } = getState()
-    ok(called)
-    equal(res, data)
-  },
-  async 'parses json data'({ url, getState }) {
-    const d = { data: 'test post data' }
-    const data = JSON.stringify(d)
+  async 'sends json data'({ getState, url, data, response }) {
     const res = await rqt(url, {
       data,
     })
+    const { called, headers, postData } = getState()
+    ok(called)
+    equal(headers['content-type'], 'application/json')
+    equal(postData, JSON.stringify(data))
+    equal(res, response)
+  },
+  async 'sends form data'({ getState, url, data, response }) {
+    const res = await rqt(url, {
+      data,
+      type: 'form',
+    })
+    const { called, headers, postData } = getState()
+    ok(called)
+    equal(headers['content-type'], 'application/x-www-form-urlencoded')
+    equal(postData, Object.keys(data).map(k => `${k}=${data[k]}`).join('&'))
+    equal(res, response)
+  },
+  async 'parses json data'({ url, data, setResponse, setContentType, getState }) {
+    setContentType('application/json')
+    setResponse(JSON.stringify(data))
+    const res = await rqt(url)
     const { called } = getState()
     ok(called)
-    deepEqual(res, d)
+    deepEqual(res, data)
   },
-  async 'rejects when cannot parse json data'({ url }) {
+  async 'parses json data with charset'({ url, data, setResponse, setContentType, getState }) {
+    setContentType('application/json; charset=utf8')
+    setResponse(JSON.stringify(data))
+    const res = await rqt(url)
+    const { called } = getState()
+    ok(called)
+    deepEqual(res, data)
+  },
+  async 'rejects when cannot parse json data'({ url, setContentType, setResponse }) {
     const data = 'not-json-data'
-    // await throws({
-    //   fn: rqt,
-    //   args: [url, { data }],
-    // })
+    setContentType('application/json')
+    setResponse(data)
     try {
-      await rqt(url, {
-        data,
-      })
+      await rqt(url)
       throw new Error('Should have thrown an error')
-    } catch ({ postData, message, stack }) {
-      equal(postData, data)
+    } catch ({ response, message, stack }) {
+      equal(response, data)
       assert(/Unexpected token o/.test(message))
       assert(/ at rejects when cannot parse json data/.test(stack))
     }
@@ -92,9 +105,9 @@ const T = {
     const res = await rqt('https://api.github.com/users/octocat/orgs')
     deepEqual(res, [])
   },
-  async 'returns binary data'({ url, setData }) {
+  async 'returns binary data'({ url, setResponse }) {
     const d = 'test buffer'
-    setData(d)
+    setResponse(d)
     const expected = new Buffer(d)
     const res = await rqt(url, {
       binary: true,
@@ -102,13 +115,13 @@ const T = {
     assert(res instanceof Buffer)
     deepEqual(res, expected)
   },
-  async 'returns headers'({ setData, url, setHeaders }) {
+  async 'returns headers'({ setResponse, url, setHeaders }) {
     const data = 'test-response'
     const header = 'hello-world'
     setHeaders({
       'x-test': header,
     })
-    setData(data)
+    setResponse(data)
     const { body, headers } = await rqt(url, {
       returnHeaders: true,
     })

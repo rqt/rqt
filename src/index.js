@@ -1,8 +1,9 @@
 import { request as http } from 'http'
 import { request as https } from 'https'
 import Catchment from 'catchment'
-import url from 'url'
+import { parse } from 'url'
 import erotic from 'erotic'
+import { getFormData } from './lib'
 import { version } from '../package.json'
 
 /**
@@ -10,60 +11,76 @@ import { version } from '../package.json'
  * @param {string} address Url such as http://example.com/api
  * @param {Config} [config] Configuration object
  * @param {object} [config.data] Data to send to the server using a post request.
- * @param {string} [config.contentType] Content-Type header. Default `application/json`.
  * @param {object} [config.headers] A map of headers to use in the request.
  * @param {boolean} [config.binary] Whether to return a buffer. Default false.
  * @param {boolean} [config.returnHeaders] Return an object with `body` and `headers` properties instead of just the response.
+ * @param {'form'|'json'} [config.type=json] How to send data: `form` for url-encoded transmission and `json` to serialise JSON data. `json` mode by default.
+ * @param {string} [config.method] What method to use to send data (only works when `data` is set). Default `POST`.
  * @returns {Promise.<string|Buffer|{ body: string|Buffer, headers: Object.<string, string> }>} A string or buffer as a response. If `config.headers` was set, an object is returned.
  */
 export default async function rqt(address, config = {}) {
   const {
-    data = null,
-    contentType = 'application/json',
+    data,
+    type = 'json',
     headers = {
       'User-Agent': `Mozilla/5.0 (Node.js) rqt/${version}`,
     },
     binary = false,
     returnHeaders = false,
+    method = 'POST',
   } = config
   const er = erotic(true)
-  const opts = url.parse(address)
-  const isHttps = opts.protocol === 'https:'
+
+  const { hostname, protocol, port, path } = parse(address)
+  const isHttps = protocol === 'https:'
   const request = isHttps ? https : http
+
   const options = {
-    hostname: opts.hostname,
-    port: opts.port,
-    path: opts.path,
+    hostname,
+    port,
+    path,
     headers,
   }
-  if (data) {
-    options.method = 'POST'
-    options.headers = {
-      ...options.headers,
-      'Content-Type': contentType,
-      'Content-Length': Buffer.byteLength(data),
+
+  let d = data
+
+  if (d) {
+    let contentType
+    switch (type) {
+    case 'json':
+      d = JSON.stringify(data)
+      contentType = 'application/json'
+      break
+    case 'form':
+      d = getFormData(data)
+      contentType = 'application/x-www-form-urlencoded'
+      break
     }
+
+    options.method = method
+    options.headers['Content-Type'] = contentType
+    options.headers['Content-Length'] = Buffer.byteLength(d)
   }
+
   let h
   const body = await new Promise((resolve, reject) => {
     const req = request(
       options,
-      async (res) => {
-        const catchment = new Catchment({ binary })
-        res.pipe(catchment)
-        const r = await catchment.promise
-        h = res.headers
+      async (rs) => {
+        ({ headers: h } = rs)
+        const { promise } = new Catchment({ rs, binary })
+        const response = await promise
         if (h['content-type'].startsWith('application/json')) {
           try {
-            const parsed = JSON.parse(r)
+            const parsed = JSON.parse(response)
             resolve(parsed)
           } catch (e) {
             const err = er(e)
-            err.postData = r
+            err.response = response
             reject(err)
           }
         } else {
-          resolve(r)
+          resolve(response)
         }
       },
     ).on(
@@ -73,8 +90,8 @@ export default async function rqt(address, config = {}) {
         reject(err)
       },
     )
-    if (data) {
-      req.write(data)
+    if (d) {
+      req.write(d)
     }
     req.end()
   })
@@ -85,8 +102,9 @@ export default async function rqt(address, config = {}) {
 /**
  * @typedef {Object} Config
  * @property {object} [data] Data to send to the server.
- * @property {string} [contentType] Content-Type header.
  * @property {object} [headers] A map of headers.
  * @property {boolean} [binary] Whether to return a buffer.
  * @property {boolean} [returnHeaders] Return an object with `body` and `headers` properties instead of just the response.
+ * @property {'form'|'json'} [type] How to send data: `form` for url-encoded transmission and `json` to serialise JSON data.
+ * @param {string} [method=POST] What method to use to send data (only works when `data` is set). Default `POST`.
  */
