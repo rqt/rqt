@@ -15,9 +15,9 @@ The package can be used from Node.js.
 ```### async rqt => string
 [
   ["url", "string"],
-  ["options", {
-    "headers": "object",
-    "binary": "boolean"
+  ["options?", {
+    "headers?": ["object"],
+    "binary?": ["boolean", false]
   }]
 ]
 ```
@@ -53,7 +53,7 @@ import rqt from 'rqt'
 [
   ["Option", "Type", "Description"],
   ["`headers`", "object", "An object to be assigned as request headers."],
-  ["`binary`", "boolean", "If set to true, a `Buffer` will be returned instead of a string."]
+  ["`binary`", "boolean", "If set to true, a `Buffer` will be returned instead of a string."],
   ["`returnHeaders`", "boolean", "Return an object with `body` and `headers` properties instead of just the response."]
 ]
 ```
@@ -62,9 +62,9 @@ import rqt from 'rqt'
 [
   ["url", "string"],
   ["options", {
-    "data": "string",
-    "type": "json|form",
-    "method": "POST"
+    "data": ["string|object"],
+    "type?": ["string", "json"],
+    "method?": ["string", "POST"]
   }]
 ]
 ```
@@ -93,21 +93,20 @@ import rqt from 'rqt'
 [
   ["Option", "Type", "Description"],
   ["`data`", "string|object", "Raw data or an object with data to send."],
-  ["`type`", "form|json", "How to encode data. The following are supported: set `form` for `application/x-www-form-urlencoded` and `json` for `application/json`."],
+  ["`type`", "string", "How to encode data. The following are supported: set `form` for `application/x-www-form-urlencoded` and `json` for `application/json`."],
   ["`method`", "string", "An HTTP method to use for sending data."],
   ["`...`", "", "All other options from the request function."]
 ]
 ```
 
-```### Session
-```
+### `Class Session`
 
 The `Session` class allows to remember the cookies during subsequent requests. It will maintain an internal state and update cookies when necessary.
 
 
 ```#### constructor => Session
 [
-  ["headers", "object"]
+  ["headers?", "object"]
 ]
 ```
 
@@ -116,7 +115,7 @@ Create an instance of a `Session` class. All headers specified here will be pres
 ```#### async request => any
 [
   ["location", "string"],
-  ["options", "object"]
+  ["options?", "object"]
 ]
 ```
 

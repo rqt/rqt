@@ -8,16 +8,17 @@
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-  * [`async rqt(url: string, options: object): string`](#async-rqturl-stringoptions-headers-o--bbinary-b--o-string)
-  * [`async rqtWithData(url: string, options: object): string`](#async-rqtwithdataurl-stringoptions-data-s--ttype-j--smethod-p--o-string)
-    * [`constructor(headers: object): Session`](#constructorheaders-object-session)
-    * [`async request(location: string, options: object): any`](#async-requestlocation-stringoptions-object-any)
+  * [`async rqt(url: string, options?: object): string`](#async-rqturl-stringoptions-headers-objectbinary-boolean-string)
+  * [`async rqtWithData(url: string, options: object): string`](#async-rqtwithdataurl-stringoptions-data-stringobjecttype-string--jsonmethod-string--post-string)
+  * [`Class Session`](#class-session)
+    * [`constructor(headers?: object): Session`](#constructorheaders-object-session)
+    * [`async request(location: string, options?: object): any`](#async-requestlocation-stringoptions-object-any)
 
 ## API
 
 The package can be used from Node.js.
 
-### `async rqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options: {`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`headers: o = b,`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`binary: b = o,`<br/>&nbsp;&nbsp;`},`<br/>`): string`
+### `async rqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: {`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`headers?: object,`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`binary?: boolean,`<br/>&nbsp;&nbsp;`},`<br/>`): string`
 
 Call this function to request a web page.
 
@@ -46,16 +47,13 @@ import rqt from 'rqt'
 })()
 ```
 
-```table
-[
-  ["Option", "Type", "Description"],
-  ["`headers`", "object", "An object to be assigned as request headers."],
-  ["`binary`", "boolean", "If set to true, a `Buffer` will be returned instead of a string."]
-  ["`returnHeaders`", "boolean", "Return an object with `body` and `headers` properties instead of just the response."]
-]
-```
+| Option | Type | Description |
+| ------ | ---- | ----------- |
+| `headers` | object | An object to be assigned as request headers. |
+| `binary` | boolean | If set to true, a `Buffer` will be returned instead of a string. |
+| `returnHeaders` | boolean | Return an object with `body` and `headers` properties instead of just the response. |
 
-### `async rqtWithData(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options: {`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`data: s = t,`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`type: j = s,`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`method: P = O,`<br/>&nbsp;&nbsp;`},`<br/>`): string`
+### `async rqtWithData(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options: {`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`data: string|object,`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`type?: string = json,`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`method?: string = POST,`<br/>&nbsp;&nbsp;`},`<br/>`): string`
 
 Send a request with data. The default type is `json` into which data will be serialised. `form` type is also supported for sending form data. All options from the blank request are also supported.
 
@@ -80,20 +78,20 @@ import rqt from 'rqt'
 | Option | Type | Description |
 | ------ | ---- | ----------- |
 | `data` | string|object | Raw data or an object with data to send. |
-| `type` | form|json | How to encode data. The following are supported: set `form` for `application/x-www-form-urlencoded` and `json` for `application/json`. |
+| `type` | string | How to encode data. The following are supported: set `form` for `application/x-www-form-urlencoded` and `json` for `application/json`. |
 | `method` | string | An HTTP method to use for sending data. |
 | `...` |  | All other options from the request function. |
 
-### `Session(): void`
+### `Class Session`
 
 The `Session` class allows to remember the cookies during subsequent requests. It will maintain an internal state and update cookies when necessary.
 
 
-#### `constructor(`<br/>&nbsp;&nbsp;`headers: object,`<br/>`): Session`
+#### `constructor(`<br/>&nbsp;&nbsp;`headers?: object,`<br/>`): Session`
 
 Create an instance of a `Session` class. All headers specified here will be present for each request (unless overridden by the `request` method).
 
-#### `async request(`<br/>&nbsp;&nbsp;`location: string,`<br/>&nbsp;&nbsp;`options: object,`<br/>`): any`
+#### `async request(`<br/>&nbsp;&nbsp;`location: string,`<br/>&nbsp;&nbsp;`options?: object,`<br/>`): any`
 
 Request a page. All options are the same as accepted by the `rqt` functions.
 
