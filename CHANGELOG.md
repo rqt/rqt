@@ -1,3 +1,12 @@
+## 20 June 2018
+
+### 2.0.0
+
+- [breaking] Module system.
+- [feature] `Session` class.
+- [feature] Form type to encode `application/x-www-form-urlencoded`, automatic JSON serialisation.
+- [doc] Use [Documentary](https://npmjs.org/package/documentary) for documentation.
+
 ## 19 June 2018
 
 ### 1.2.1
