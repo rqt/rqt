@@ -16,7 +16,7 @@ export default class Session {
   }
   async request(location, {
     headers = {},
-    options = {},
+    ...options
   } = {}) {
     const { body, headers: h } = await rqt(location, {
       ...options,
@@ -28,7 +28,7 @@ export default class Session {
       returnHeaders: true,
     })
     this.cookies = updateCookies(this.cookies, h)
-    return body
+    return options.returnHeaders ? { body, headers: h } : body
   }
 }
 

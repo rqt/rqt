@@ -99,6 +99,8 @@ export default async function rqt(address, config = {}) {
   return body
 }
 
+export { default as Session } from './session'
+
 /**
  * @typedef {Object} Config
  * @property {object} [data] Data to send to the server.
