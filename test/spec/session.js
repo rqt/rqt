@@ -1,7 +1,7 @@
-import { ok, assert, equal, deepEqual, throws } from 'zoroaster/assert'
+import { equal, deepEqual } from 'zoroaster/assert'
 import Session from '../../src/session'
 import Context from '../context'
-import { version } from '../../package.json'
+// import { version } from '../../package.json'
 
 /** @type {Object.<string, (c: Context)>} */
 const T = {
