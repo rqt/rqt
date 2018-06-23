@@ -40,6 +40,7 @@
     "documentary": "1.6.1",
     "eslint": "5.0.0",
     "eslint-config-artdeco": "1.0.0",
+    "idio": "2.7.0",
     "server-destroy": "1.0.1",
     "zoroaster": "2.1.0"
   },
