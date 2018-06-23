@@ -39,12 +39,13 @@ const T = {
         'User-Agent': 'test-ua',
       },
     })
+    const sessionid = '38afes7a8'
     setHeaders({
-      'set-cookie': 'sessionid=38afes7a8; HttpOnly; Path=/',
+      'set-cookie': `sessionid=${sessionid}; HttpOnly; Path=/`,
     })
     await s.request(url)
     deepEqual(s.cookies, {
-      sessionid: '38afes7a8',
+      sessionid,
     })
   },
   async 'extends cookies'({ url, setHeaders }) {

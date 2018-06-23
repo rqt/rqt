@@ -1,11 +1,33 @@
-import { request as http } from 'http'
+import { request as http  } from 'http'
+// import { RequestOptions, ClientRequest, IncomingHttpHeaders, IncomingMessage } from 'http'
 import { request as https } from 'https'
 import Catchment from 'catchment'
 import { parse } from 'url'
 import erotic from 'erotic'
+import { debuglog } from 'util'
+import { createGunzip } from 'zlib'
 import { getFormData } from './lib'
 import { version } from '../package.json'
 
+const LOG = debuglog('rqt')
+
+
+const getData = (type, data) => {
+  switch (type) {
+  case 'json':
+    data = JSON.stringify(data)
+    type = 'application/json'
+    break
+  case 'form':
+    data = getFormData(data)
+    type = 'application/x-www-form-urlencoded'
+    break
+  }
+  return {
+    data,
+    contentType: type,
+  }
+}
 /**
  * Request an HTTP page. If `returnHeaders` is set to true, an object will be returned.
  * @param {string} address Url such as http://example.com/api
@@ -20,14 +42,15 @@ import { version } from '../package.json'
  */
 export default async function rqt(address, config = {}) {
   const {
-    data,
+    data: d,
     type = 'json',
-    headers = {
+    headers: outgoingHeaders = {
       'User-Agent': `Mozilla/5.0 (Node.js) rqt/${version}`,
     },
     binary = false,
     returnHeaders = false,
     method = 'POST',
+    justHeaders = false,
   } = config
   const er = erotic(true)
 
@@ -39,64 +62,117 @@ export default async function rqt(address, config = {}) {
     hostname,
     port,
     path,
-    headers,
+    headers: outgoingHeaders,
   }
 
-  let d = data
-
+  let data
   if (d) {
-    let contentType
-    switch (type) {
-    case 'json':
-      d = JSON.stringify(data)
-      contentType = 'application/json'
-      break
-    case 'form':
-      d = getFormData(data)
-      contentType = 'application/x-www-form-urlencoded'
-      break
-    }
+    const _d = getData(type, d)
+      ; ({ data } = _d)
+    const { contentType } = _d
 
     options.method = method
     options.headers['Content-Type'] = contentType
-    options.headers['Content-Length'] = Buffer.byteLength(d)
+    options.headers['Content-Length'] = Buffer.byteLength(data)
   }
 
-  let h
-  const body = await new Promise((resolve, reject) => {
-    const req = request(
-      options,
-      async (rs) => {
-        ({ headers: h } = rs)
-        const { promise } = new Catchment({ rs, binary })
-        const response = await promise
-        if (h['content-type'].startsWith('application/json')) {
-          try {
-            const parsed = JSON.parse(response)
-            resolve(parsed)
-          } catch (e) {
-            const err = er(e)
-            err.response = response
-            reject(err)
-          }
-        } else {
-          resolve(response)
-        }
-      },
-    ).on(
-      'error',
-      (error) => {
-        const err = er(error)
-        reject(err)
-      },
-    )
-    if (d) {
-      req.write(d)
-    }
-    req.end()
+  const { body, headers, byteLength, statusCode, statusMessage, rawLength } = await exec(request, options, {
+    data,
+    justHeaders,
+    binary,
+    er,
   })
-  if (returnHeaders) return { body, headers: h }
+
+  LOG('%s %s B%s', address, byteLength, `${byteLength != rawLength ? ` (raw ${rawLength} B)` : ''}`)
+
+  if (returnHeaders) return { body, headers, statusCode, statusMessage }
   return body
+}
+
+/**
+ * @param {IncomingMessage.headers} headers
+ */
+const isHeadersJson = (headers) => {
+  return headers['content-type'].startsWith('application/json')
+}
+
+/**
+ * @param {IncomingMessage} req
+ */
+const isMessageGzip = (res) => {
+  return res.headers['content-encoding'] == 'gzip'
+}
+/**
+ * @param {http} request actual http or https request function
+ * @param {RequestOptions} requestOptions
+ * @param {object} config Config object.
+ * @param {boolean} [config.justHeaders] only return headers as soon as available. false
+ * @param {boolean} [config.binary] return binary
+ * @param {boolean} [config.er] erotic callback
+ * @returns {{req: ClientRequest, promise: Promise.<{ body?: string|Buffer, headers: IncomingHttpHeaders, statusCode: number, statusMessage: string, byteLength: number }>}
+ */
+const makeRequest = (request, requestOptions, config) => {
+  const { justHeaders, binary, er = erotic(true) } = config
+  let req
+  const promise = new Promise((r, j) => {
+    let meta
+    req = request(requestOptions, async (res) => {
+      const { headers, statusMessage, statusCode } = res
+      meta = { statusMessage, statusCode }
+      if (justHeaders) {
+        res.destroy()
+        r({ headers, ...meta })
+        return
+      }
+      const isGzip = isMessageGzip(res)
+
+      let rawLength = 0
+      res.on('data', data => rawLength += data.byteLength )
+
+      const rs = isGzip
+        ? res.pipe(createGunzip())
+        : res
+
+
+      const { promise: p } = new Catchment({ rs, binary })
+      let body = await p
+      r({ body, headers, ...meta, byteLength: body.length, rawLength })
+    })
+      .on('error', (error) => {
+        const err = er(error)
+        j(err)
+      })
+  })
+  return { req, promise }
+}
+const exec = async (request, requestOptions, { data, justHeaders, binary, er = erotic(true) }) => {
+  const { req, promise } = makeRequest(request, requestOptions, {
+    justHeaders,
+    binary,
+    er,
+  })
+  if (data) {
+    req.write(data, () => {
+      req.end()
+    })
+  } else {
+    req.end()
+  }
+  const res = await promise
+
+  const isJson = isHeadersJson(res.headers)
+
+  if (isJson) {
+    try {
+      res.body = JSON.parse(res.body)
+    } catch (e) {
+      const err = er(e)
+      err.response = res.body
+      throw err
+    }
+  }
+
+  return res
 }
 
 export { default as Session } from './session'
