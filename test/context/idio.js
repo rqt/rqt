@@ -28,6 +28,9 @@ export default class IdioContext {
   get fixtureName() {
     return 'chapter1.txt'
   }
+  get fixtureJsonName() {
+    return 'chapter1.json'
+  }
 
   getFixtureUrl(fixture) {
     return `${this.url}/${fixture}`
@@ -38,11 +41,20 @@ export default class IdioContext {
   get fixturePath() {
     return resolve(FIXTURE, this.fixtureName)
   }
+  get fixtureJsonPath() {
+    return resolve(FIXTURE, this.fixtureJsonName)
+  }
   async readFixture() {
-    Dracula = read(this.fixturePath)
+    Dracula = Dracula || read(this.fixturePath)
     const dracula = await Dracula
     return dracula
+  }
+  async readJsonFixture() {
+    DraculaJson = DraculaJson || read(this.fixtureJsonPath)
+    const dracula = await DraculaJson
+    return JSON.parse(dracula)
   }
 }
 
 let Dracula
+let DraculaJson

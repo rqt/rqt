@@ -1,4 +1,4 @@
-import { equal } from 'zoroaster/assert'
+import { equal, deepEqual } from 'zoroaster/assert'
 import IdioContext from '../context/idio'
 import rqt from '../../src'
 
@@ -26,6 +26,21 @@ const T = {
     })
     const expected = await readFixture()
     equal(res, expected)
+  },
+  async 'decompresses json data'({ start, getFixtureUrl, fixtureJsonName, readJsonFixture }) {
+    await start({
+      middleware: {
+        compress: { use: true },
+      },
+    })
+    const url = getFixtureUrl(fixtureJsonName)
+    const res = await rqt(url, {
+      headers: {
+        'Accept-Encoding': 'gzip, deflate, br',
+      },
+    })
+    const expected = await readJsonFixture()
+    deepEqual(res, expected)
   },
 
 }
