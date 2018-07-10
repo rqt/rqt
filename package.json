@@ -31,17 +31,10 @@
   },
   "homepage": "https://github.com/artdecocode/rqt#readme",
   "devDependencies": {
-    "@babel/cli": "7.0.0-beta.51",
-    "@babel/core": "7.0.0-beta.51",
-    "@babel/plugin-syntax-object-rest-spread": "7.0.0-beta.51",
-    "@babel/plugin-transform-modules-commonjs": "7.0.0-beta.51",
-    "@babel/register": "7.0.0-beta.51",
-    "babel-plugin-transform-rename-import": "2.2.0",
     "documentary": "1.6.1",
-    "eslint": "5.0.0",
     "eslint-config-artdeco": "1.0.0",
+    "https-context": "1.0.1",
     "idio": "2.7.0",
-    "server-destroy": "1.0.1",
     "zoroaster": "2.1.0"
   },
   "dependencies": {
