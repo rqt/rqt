@@ -38,6 +38,7 @@
     "zoroaster": "2.1.0"
   },
   "dependencies": {
+    "@rqt/aqt": "1.0.0",
     "catchment": "2.0.1",
     "erotic": "1.2.1"
   }

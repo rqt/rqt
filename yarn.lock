@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@rqt/aqt@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@rqt/aqt/-/aqt-1.0.0.tgz#8194eefbd7d0127e230d5ecc0233b338b61f5955"
+
 "@wrote/read-dir-structure@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@wrote/read-dir-structure/-/read-dir-structure-1.0.0.tgz#11b827934b493b2f730a32a91551eadacd41b936"
