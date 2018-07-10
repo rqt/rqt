@@ -31,9 +31,9 @@
   },
   "homepage": "https://github.com/artdecocode/rqt#readme",
   "devDependencies": {
-    "documentary": "1.6.1",
+    "documentary": "1.8.2",
     "eslint-config-artdeco": "1.0.0",
-    "https-context": "1.0.1",
+    "https-context": "1.0.2",
     "idio": "2.7.0",
     "zoroaster": "2.1.0"
   },
