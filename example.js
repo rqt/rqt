@@ -1,3 +1,0 @@
-const rqt = require('./')
-
-rqt()

@@ -17,7 +17,8 @@ The package can be used from Node.js.
   ["url", "string"],
   ["options?", {
     "headers?": ["object"],
-    "binary?": ["boolean", false]
+    "binary?": ["boolean", false],
+    "returnHeaders?": ["boolean", false]
   }]
 ]
 ```
@@ -139,7 +140,3 @@ const { body, headers } = await session.request('http://127.0.0.1/Login.aspx', {
   returnHeaders: true,
 })
 ```
-
----
-
-(c) [Art Deco Code](https://artdeco.bz) 2018
