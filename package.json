@@ -8,9 +8,10 @@
     "test": "zoroaster test/spec -b",
     "test-watch": "zoroaster test/spec -b -w",
     "test-build": "BABEL_ENV=test-build yarn t test/spec",
-    "doc": "doc README-source.md -o README.md",
+    "doc": "NODE_DEBUG=doc doc documentary -o README.md",
     "lint": "eslint .",
-    "build": "babel src --out-dir build --source-maps"
+    "build": "b --source-maps",
+    "example/rqt.js": "node example example/rqt.js"
   },
   "repository": {
     "type": "git",

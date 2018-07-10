@@ -10,46 +10,81 @@
 
 ## API
 
-The package can be used from Node.js.
+The package can be used from Node.js. There are multiple functions for different kinds of operations to perform. The main purpose of splitting the package into multiple functions is to be able to get the correct type inference.
 
-```### async rqt => string
+```js
+import rqt, { bqt, sqt, aqt } from 'rqt'
+```
+
+```table
 [
-  ["url", "string"],
-  ["options?", {
-    "headers?": ["object"],
-    "binary?": ["boolean", false],
-    "returnHeaders?": ["boolean", false]
-  }]
+  ["Function", "Meaning", "Return type"],
+  ["`rqt`", "String Request", "Request a web page and return the result as a string."],
+  ["`jqt`", "JSON Request", "Parse result as a `JSON` object."],
+  ["`bqt`", "Binary Request", "Result will be returned as a buffer."],
+  ["`sqt`", "Stream Request", "Result is returned as a stream."],
+  ["`aqt`", "Advanced Request", "Result will contain headers and status code, alias for `@rqt/aqt`."]
 ]
 ```
 
-Call this function to request a web page.
+### `Options` Type
 
-```js
-import rqt from 'rqt'
+`rqt`, `jqt`, `bqt` and `sqt` accept options to set headers and send data as the second argument after the URL.
 
-(async () => {
-  const res = await rqt('http://rqt.adc.sh/')
-  // web page contents returned
-})()
+%TYPE true
+<p name="data" type="object">
+  <d>Optional data to send to the server with the request.</d>
+  <e><code>
+{
+  user: 'test',
+  password: 'Swordfish',
+}
+</code></e>
+</p>
+<p name="type" type="'form'|'json'">
+  <d>How to send data: <code>json</code> to serialise JSON data and <code>form</code> for url-encoded transmission with <code>json</code> mode by default.</d>
+  <e>form</e>
+</p>
+<p name="headers" type="object">
+  <d>Headers to send along with the request.</d>
+  <e><code>
+{
+  'User-Agent': 'Node.js rqt',
+}
+</code></e>
+</p>
+<p name="method" type="string">
+  <d>What HTTP method to use to send data (only works when <code>data</code> is set). Defaults to <code>POST</code>.</d>
+  <e><code>PUT</code></e>
+</p>
+%
+
+```### async rqt => string|object
+[
+  ["url", "string"],
+  ["options?", "Options"]
+]
 ```
 
-It is possible to pass some options as the second argument.
+Call this function to request a web page, which will be returned as a string, or a parsed object if the server responded with a `json` content-type header.
 
-```js
-import rqt from 'rqt'
+%EXAMPLE: example/rqt.js, ../src => rqt, javascript%
 
-(async () => {
-  const bufferRes = await rqt('http://rqt.adc.sh/', {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Node.js) rqt',
-    },
-    binary: true,
-    returnHeaders: false,
-  })
-})()
+%FORK example example/rqt.js%
+
+To send data to the server, add options.
+
+%EXAMPLE: example/rqt-options.js, ../src => rqt, javascript%
+
+```### async sqt => Readable
+[
+  ["url", "string"],
+  ["options?", "Options"]
+]
 ```
 
+Request a web page as a stream.
+<!--
 ```table
 [
   ["Option", "Type", "Description"],
@@ -68,11 +103,11 @@ import rqt from 'rqt'
     "method?": ["string", "POST"]
   }]
 ]
-```
+``` -->
 
-Send a request with data. The default type is `json` into which data will be serialised. `form` type is also supported for sending form data. All options from the blank request are also supported.
+<!-- Send a request with data. The default type is `json` into which data will be serialised. `form` type is also supported for sending form data. All options from the blank request are also supported. -->
 
-```js
+<!-- ```js
 import rqt from 'rqt'
 
 (async () => {
@@ -88,9 +123,9 @@ import rqt from 'rqt'
     },
   })
 })()
-```
+``` -->
 
-```table
+<!-- ```table
 [
   ["Option", "Type", "Description"],
   ["`data`", "string|object", "Raw data or an object with data to send."],
@@ -98,11 +133,11 @@ import rqt from 'rqt'
   ["`method`", "string", "An HTTP method to use for sending data."],
   ["`...`", "", "All other options from the request function."]
 ]
-```
+``` -->
 
-### `Class Session`
+### `Session` Class
 
-The `Session` class allows to remember the cookies during subsequent requests. It will maintain an internal state and update cookies when necessary.
+The `Session` class allows to remember cookies set during all requests. It will maintain an internal state and update cookies when necessary.
 
 
 ```#### constructor => Session
@@ -116,27 +151,10 @@ Create an instance of a `Session` class. All headers specified here will be pres
 ```#### async request => any
 [
   ["location", "string"],
-  ["options?", "object"]
+  ["options?", "Options"]
 ]
 ```
 
 Request a page. All options are the same as accepted by the `rqt` functions.
 
-```js
-const session = new Session({
-  headers: {
-    'User-Agent': USER_AGENT,
-  },
-})
-const { SessionKey } = await session.request('http://127.0.0.1/Session.ashx')
-
-const { body, headers } = await session.request('http://127.0.0.1/Login.aspx', {
-  data: {
-    LoginUserName: 'test',
-    LoginPassword: 'test',
-    sessionEncryptValue: SessionKey,
-  },
-  type: 'form',
-  returnHeaders: true,
-})
-```
+%EXAMPLE: example/session.js, ../src => rqt, javascript%
