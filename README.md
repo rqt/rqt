@@ -24,7 +24,7 @@
 The package can be used from Node.js. There are multiple functions for different kinds of operations to perform. The main purpose of splitting the package into multiple functions is to be able to get the correct type inference.
 
 ```js
-import rqt, { bqt, sqt, aqt } from 'rqt'
+import rqt, { jqt, bqt, sqt, aqt } from 'rqt'
 ```
 
 | Function | Meaning | Return type |
@@ -53,28 +53,34 @@ import rqt, { bqt, sqt, aqt } from 'rqt'
   <td><a name="data"><code>data</code></a></td>
   <td><em>object</em></td>
   <td>Optional data to send to the server with the request.</td>
-  <td><code>
+  <td>
+
+```
 {
   user: 'test',
   password: 'Swordfish',
 }
-</code></td>
+```
+</td>
  </tr>
  <tr>
   <td><a name="type"><code>type</code></a></td>
   <td><em>'form'|'json'</em></td>
   <td>How to send data: <code>json</code> to serialise JSON data and <code>form</code> for url-encoded transmission with <code>json</code> mode by default.</td>
-  <td>form</td>
+  <td><code>form</code></td>
  </tr>
  <tr>
   <td><a name="headers"><code>headers</code></a></td>
   <td><em>object</em></td>
   <td>Headers to send along with the request.</td>
-  <td><code>
+  <td>
+
+```
 {
   'User-Agent': 'Node.js rqt',
 }
-</code></td>
+```
+</td>
  </tr>
  <tr>
   <td><a name="method"><code>method</code></a></td>
