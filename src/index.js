@@ -11,7 +11,7 @@ import aqt from '@rqt/aqt'
  * @returns {Promise.<string>} A string as a response.
  */
 export default async function rqt(address, options = {}) {
-  const { data, type, headers, method } = options
+  const { data, type, headers, methaod } = options
   const { body } = await aqt(address, {
     data, type, headers, method,
   })

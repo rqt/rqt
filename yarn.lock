@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@rqt/aqt@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@rqt/aqt/-/aqt-1.0.0.tgz#8194eefbd7d0127e230d5ecc0233b338b61f5955"
+"@rqt/aqt@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@rqt/aqt/-/aqt-1.0.1.tgz#9d6684daaca6d64b151ef7723eba06ba80d5e290"
 
 "@wrote/read-dir-structure@1.0.0":
   version "1.0.0"
@@ -234,9 +234,9 @@ difflib@~0.2.1:
   dependencies:
     heap ">= 0.2.0"
 
-documentary@1.8.2:
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.8.2.tgz#3eeb907dfb57094abb2db38ec002d199dc2b999b"
+documentary@1.10.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.10.0.tgz#f3d5e915a1d6d71805f804e0b71fef278680c68b"
   dependencies:
     argufy "1.1.2"
     catchment "2.0.1"
@@ -306,9 +306,9 @@ escape-string-regexp@^1.0.2:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
-eslint-config-artdeco@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-artdeco/-/eslint-config-artdeco-1.0.0.tgz#1bbd25e738badb49e76faf6b934f925dfc094c9c"
+eslint-config-artdeco@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-artdeco/-/eslint-config-artdeco-1.0.1.tgz#4451c9d0ed1ce4d33dfd43a6315f12c8bfb04274"
 
 fbjs@^0.8.16:
   version "0.8.17"

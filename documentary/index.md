@@ -65,14 +65,14 @@ import rqt, { jqt, bqt, sqt, aqt } from 'rqt'
 </p>
 %
 
-```### async rqt => string|object
+```### async rqt => string
 [
   ["url", "string"],
   ["options?", "Options"]
 ]
 ```
 
-Call this function to request a web page, which will be returned as a string, or a parsed object if the server responded with a `json` content-type header.
+Call this function to request a web page, which will be returned as a string.
 
 %EXAMPLE: example/rqt.js, ../src => rqt, javascript%
 
