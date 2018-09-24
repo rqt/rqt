@@ -9,9 +9,10 @@
     "test-watch": "zoroaster test/spec -b -w",
     "test-build": "BABEL_ENV=test-build yarn t test/spec",
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
+    "d": "NODE_DEBUG=doc doc src/index.js -g",
     "lint": "eslint .",
     "b": "alamode src -o build",
-    "build": "yarn-s doc b",
+    "build": "yarn-s d b doc",
     "example/rqt.js": "node example example/rqt.js"
   },
   "repository": {
@@ -41,7 +42,7 @@
     "zoroaster": "3.5.1"
   },
   "dependencies": {
-    "@rqt/aqt": "1.0.1",
+    "@rqt/aqt": "1.0.2",
     "catchment": "3.1.1",
     "erotic": "2.0.1"
   }
