@@ -14,8 +14,8 @@
   * [<code>headers</code>](#headers)
   * [<code>method</code>](#method)
 - [`async rqt(url: string, options?: Options): string`](#async-rqturl-stringoptions-options-string)
-  * [`async sqt(url: string, options?: Options): Readable`](#async-sqturl-stringoptions-options-readable)
-  * [`Session` Class](#session-class)
+- [`async sqt(url: string, options?: Options): Readable`](#async-sqturl-stringoptions-options-readable)
+- [`Session` Class](#session-class)
     * [`constructor(headers?: object): Session`](#constructorheaders-object-session)
     * [`async request(location: string, options?: Options): any`](#async-requestlocation-stringoptions-options-any)
 - [Copyright](#copyright)
@@ -142,12 +142,12 @@ import rqt from 'rqt'
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
 
-### `async sqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Readable`
+## `async sqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Readable`
 
 Request a web page as a stream.
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
 
-### `Session` Class
+## `Session` Class
 
 The _Session_ class allows to remember cookies set during all requests. It will maintain an internal state and update cookies when necessary.
 

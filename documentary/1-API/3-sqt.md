@@ -1,4 +1,4 @@
-```### async sqt => Readable
+```## async sqt => Readable
 [
   ["url", "string"],
   ["options?", "Options"]

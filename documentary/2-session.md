@@ -1,4 +1,4 @@
-### `Session` Class
+## `Session` Class
 
 The _Session_ class allows to remember cookies set during all requests. It will maintain an internal state and update cookies when necessary.
 
