@@ -10,7 +10,8 @@
     "test-build": "BABEL_ENV=test-build yarn t test/spec",
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
     "lint": "eslint .",
-    "build": "b --source-maps",
+    "b": "alamode src -o build",
+    "build": "yarn-s doc b",
     "example/rqt.js": "node example example/rqt.js"
   },
   "repository": {
@@ -32,15 +33,16 @@
   },
   "homepage": "https://github.com/rqt/rqt#readme",
   "devDependencies": {
-    "documentary": "1.10.0",
+    "alamode": "1.5.1",
+    "documentary": "1.19.0",
     "eslint-config-artdeco": "1.0.1",
     "https-context": "1.0.2",
-    "idio": "2.7.0",
-    "zoroaster": "2.1.0"
+    "yarn-s": "1.1.0",
+    "zoroaster": "3.5.1"
   },
   "dependencies": {
     "@rqt/aqt": "1.0.1",
-    "catchment": "2.0.1",
-    "erotic": "1.2.1"
+    "catchment": "3.1.1",
+    "erotic": "2.0.1"
   }
 }
