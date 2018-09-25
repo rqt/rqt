@@ -26,6 +26,9 @@
   ],
   "keywords": [
     "request",
+    "network",
+    "session",
+    "cookies",
     "http",
     "https"
   ],
@@ -36,6 +39,7 @@
   },
   "homepage": "https://github.com/rqt/rqt#readme",
   "devDependencies": {
+    "@idio/core": "1.0.0",
     "alamode": "1.5.1",
     "documentary": "1.20.1",
     "eslint-config-artdeco": "1.0.1",
