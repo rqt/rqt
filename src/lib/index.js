@@ -4,7 +4,7 @@ import aqt from '@rqt/aqt'
  * Request an HTTP page and return the response body as a string.
  * @param {string} address Url such as http://example.com/api.
  * @param {Options} [options] Options for requests.
- * @param {*} options.data Optional data to send to the server with the request.
+ * @param {*} [options.data] Optional data to send to the server with the request.
  * @param {'form'|'json'} [options.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @param {OutgoingHttpHeaders} [options.headers] Headers to use for the request.
  * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
@@ -24,7 +24,7 @@ export const rqt = async (address, options = {}) => {
  * Request a page and return the body as a buffer.
  * @param {string} address The URL such as http://example.com/api.
  * @param {Options} [options] Options for requests.
- * @param {*} options.data Optional data to send to the server with the request.
+ * @param {*} [options.data] Optional data to send to the server with the request.
  * @param {'form'|'json'} [options.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @param {OutgoingHttpHeaders} [options.headers] Headers to use for the request.
  * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
@@ -45,7 +45,7 @@ export const bqt = async (address, options) => {
  * Request a page and return the body as a stream.
  * @param {string} address Url such as http://example.com/api
  * @param {Options} [config] Options for requests.
- * @param {*} config.data Optional data to send to the server with the request.
+ * @param {*} [config.data] Optional data to send to the server with the request.
  * @param {'form'|'json'} [config.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @param {OutgoingHttpHeaders} [config.headers] Headers to use for the request.
  * @param {boolean} [config.compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
@@ -63,7 +63,7 @@ export const srqt = async (address, config) => {
  * @typedef {import('http').OutgoingHttpHeaders} OutgoingHttpHeaders
  *
  * @typedef {Object} Options Options for requests.
- * @prop {*} data Optional data to send to the server with the request.
+ * @prop {*} [data] Optional data to send to the server with the request.
  * @prop {'form'|'json'} [type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @prop {OutgoingHttpHeaders} [headers] Headers to use for the request.
  * @prop {boolean} [compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.

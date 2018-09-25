@@ -45,13 +45,13 @@ import rqt, { jqt, bqt, sqt, aqt, Session } from 'rqt'
 
 __<a name="type-options">`Options`</a>__: Options for requests.
 
-|   Name    |                        Type                        |                                                           Description                                                           | Default  |
-| --------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| __data*__ | _*_                                                | Optional data to send to the server with the request.                                                                           | -        |
-| type      | _'form'\|'json'_                                   | How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default.            | `'json'` |
-| headers   | _[OutgoingHttpHeaders](#type-outgoinghttpheaders)_ | Headers to use for the request.                                                                                                 | -        |
-| compress  | _boolean_                                          | Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. | `true`   |
-| method    | _string_                                           | What HTTP method to use to send data.                                                                                           | `POST`   |
+|   Name   |                        Type                        |                                                           Description                                                           | Default  |
+| -------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| data     | _*_                                                | Optional data to send to the server with the request.                                                                           | -        |
+| type     | _'form'\|'json'_                                   | How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default.            | `'json'` |
+| headers  | _[OutgoingHttpHeaders](#type-outgoinghttpheaders)_ | Headers to use for the request.                                                                                                 | -        |
+| compress | _boolean_                                          | Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. | `true`   |
+| method   | _string_                                           | What HTTP method to use to send data.                                                                                           | `POST`   |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true"></a></p>
 
