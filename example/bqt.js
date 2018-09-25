@@ -1,19 +1,9 @@
 import { HTTPContext } from 'https-context'
 /* start example */
-import rqt from '../../src'
+import { bqt } from '../src'
 
 const Request = async (url) => {
-  const res = await rqt(url, {
-    headers: {
-      'User-Agent': '@rqt/rqt (Node.js)',
-    },
-    data: {
-      username: 'new-user',
-      password: 'pass123',
-    },
-    type: 'form',
-    method: 'PUT',
-  })
+  const res = await bqt(url)
   console.log(res)
 }
 /* end example */

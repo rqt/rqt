@@ -1,0 +1,17 @@
+<types>
+  <import name="OutgoingHttpHeaders" from="http" />
+  <type name="Options" desc="Options for requests.">
+    <prop name="data">
+      Optional data to send to the server with the request.
+    </prop>
+    <prop name="type" type="'form'|'json'" default="'json'">
+      How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default.
+    </prop>
+    <prop opt type="OutgoingHttpHeaders" name="headers">
+      Headers to use for the request.
+    </prop>
+    <prop opt string name="method" default="POST">
+      What HTTP method to use to send data.
+    </prop>
+  </type>
+</types>

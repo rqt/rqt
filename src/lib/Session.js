@@ -1,23 +1,30 @@
 import rqt from '.'
 
+/**
+ * An instance of a session class can maintain cookies.
+ */
 export default class Session {
   /**
    * A session can be used when requests need to be made in sequence, and rely on cookies.
-   * @param {Conf} conf Configuration object.
-   * @param {Object.<string, string>} [conf.headers] Headers to send with each request.
+   * @param {Conf} options Configuration object.
+   * @param {OutgoingHttpHeaders} [conf.headers] Headers to send with each request.
    */
-  constructor(conf = {}) {
+  constructor(options = {}) {
     const {
       headers = {},
-    } = conf
+    } = options
 
     this.headers = headers
     this.cookies = {}
   }
-  async request(location, {
-    headers = {},
-    ...options
-  } = {}) {
+  /**
+   * @param {string} location The URL to which to make a request.
+   */
+  async request(location, params = {}) {
+    const {
+      headers = {},
+      ...options
+    } = params
     const { body, headers: h } = await rqt(location, {
       ...options,
       headers: {
@@ -75,6 +82,7 @@ const extractCookies = ({ 'set-cookie': setCookie = [] } = {}) => {
 }
 
 /**
+ * @typedef {import('http').OutgoingHttpHeaders} OutgoingHttpHeaders
  * @typedef {Object} Conf
- * @property {Object.<string, string>} [headers] Headers to send with each request.
+ * @property {OutgoingHttpHeaders} [headers] Headers to send with each request.
  */

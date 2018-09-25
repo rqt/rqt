@@ -14,6 +14,7 @@
   * [<code>headers</code>](#headers)
   * [<code>method</code>](#method)
 - [`async rqt(url: string, options?: Options): string`](#async-rqturl-stringoptions-options-string)
+- [`async bqt(url: string, options?: Options): Buffer`](#async-bqturl-stringoptions-options-buffer)
 - [`async sqt(url: string, options?: Options): Readable`](#async-sqturl-stringoptions-options-readable)
 - [`Session` Class](#session-class)
     * [`constructor(headers?: object): Session`](#constructorheaders-object-session)
@@ -101,51 +102,65 @@ import rqt, { jqt, bqt, sqt, aqt, Session } from 'rqt'
 
 ## `async rqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): string`
 
-Call this function to request a web page, which will be returned as a string.
+Request a web page, and return the result as a string.
 
 ```js
-import { HTTPContext } from 'https-context'
 import rqt from 'rqt'
 
-(async () => {
-  let c
-  try {
-    c = new HTTPContext()
-    await c._init()
-    c.setResponse('Hello World')
-    const res = await rqt(c.url)
-    console.log(res)
-  } finally {
-    await c._destroy()
-  }
-})()
+const Request = async (url) => {
+  const res = await rqt(url)
+  console.log(res)
+}
 ```
 ```
-
+Hello World
 ```
 
 To send data to the server, add options.
 
 ```js
-import rqt from 'rqt'
+import rqt from '../../src'
 
-(async () => {
-  const { body, headers } = await rqt('http://rqt.adc.sh/', {
+const Request = async (url) => {
+  const res = await rqt(url, {
     headers: {
-      'User-Agent': 'Mozilla/5.0 (Node.js) rqt',
+      'User-Agent': '@rqt/rqt (Node.js)',
     },
-    binary: true,
-    returnHeaders: false,
+    data: {
+      username: 'new-user',
+      password: 'pass123',
+    },
+    type: 'form',
+    method: 'PUT',
   })
-})()
+  console.log(res)
+}
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
 
+## `async bqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Buffer`
+
+Request a web page, and return the result as a buffer.
+
+```js
+import { bqt } from 'rqt'
+
+const Request = async (url) => {
+  const res = await bqt(url)
+  console.log(res)
+}
+```
+```
+<Buffer 48 65 6c 6c 6f 20 57 6f 72 6c 64>
+```
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
+
 ## `async sqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Readable`
 
 Request a web page as a stream.
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>
 
 ## `Session` Class
 
