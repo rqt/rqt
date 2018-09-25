@@ -2,7 +2,9 @@
 
 `rqt`, `jqt`, `bqt` and `sqt` accept options to set headers and send data as the second argument after the URL.
 
-%TYPE true
+%TYPEDEF types/options.xml%
+
+<!-- %TYPE true
 <p name="data" type="object">
   <d>Optional data to send to the server with the request.</d>
   <e>
@@ -34,6 +36,6 @@
   <d>What HTTP method to use to send data (only works when <code>data</code> is set). Defaults to <code>POST</code>.</d>
   <e><code>PUT</code></e>
 </p>
-%
+% -->
 
 %~%

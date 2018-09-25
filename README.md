@@ -9,10 +9,6 @@
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
 - [`Options` Type](#options-type)
-  * [<code>data</code>](#data)
-  * [<code>type</code>](#type)
-  * [<code>headers</code>](#headers)
-  * [<code>method</code>](#method)
 - [`async rqt(url: string, options?: Options): string`](#async-rqturl-stringoptions-options-string)
 - [`async bqt(url: string, options?: Options): Buffer`](#async-bqturl-stringoptions-options-buffer)
 - [`async sqt(url: string, options?: Options): Readable`](#async-sqturl-stringoptions-options-readable)
@@ -45,58 +41,17 @@ import rqt, { jqt, bqt, sqt, aqt, Session } from 'rqt'
 
 `rqt`, `jqt`, `bqt` and `sqt` accept options to set headers and send data as the second argument after the URL.
 
-<table>
- <thead>
-  <tr>
-   <th>Property</th>
-   <th>Type</th>
-   <th>Description</th>
-   <th>Example</th>
-  </tr>
- </thead>
- <tbody>
-  <tr>
-   <td><a name="data"><code>data</code></a></td>
-   <td><em>object</em></td>
-   <td>Optional data to send to the server with the request.</td>
-   <td>
+`import('http').OutgoingHttpHeaders` __<a name="type-outgoinghttpheaders">`OutgoingHttpHeaders`</a>__
 
-```
-{
-  user: 'test',
-  password: 'Swordfish',
-}
-```
-</td>
-  </tr>
-  <tr>
-   <td><a name="type"><code>type</code></a></td>
-   <td><em>'form'|'json'</em></td>
-   <td>How to send data: <code>json</code> to serialise JSON data and <code>form</code> for url-encoded transmission with <code>json</code> mode by default.</td>
-   <td><code>form</code></td>
-  </tr>
-  <tr>
-   <td><a name="headers"><code>headers</code></a></td>
-   <td><em>object</em></td>
-   <td>Headers to send along with the request.</td>
-   <td>
+__<a name="type-options">`Options`</a>__: Options for requests.
 
-```
-{
-  'User-Agent': 'Node.js rqt',
-}
-```
-</td>
-  </tr>
-  <tr>
-   <td><a name="method"><code>method</code></a></td>
-   <td><em>string</em></td>
-   <td>What HTTP method to use to send data (only works when <code>data</code> is set). Defaults to <code>POST</code>.</td>
-   <td><code>PUT</code></td>
-  </tr>
- </tbody>
-</table>
-
+|   Name    |                        Type                        |                                                           Description                                                           | Default  |
+| --------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| __data*__ | _*_                                                | Optional data to send to the server with the request.                                                                           | -        |
+| type      | _'form'\|'json'_                                   | How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default.            | `'json'` |
+| headers   | _[OutgoingHttpHeaders](#type-outgoinghttpheaders)_ | Headers to use for the request.                                                                                                 | -        |
+| compress  | _boolean_                                          | Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. | `true`   |
+| method    | _string_                                           | What HTTP method to use to send data.                                                                                           | `POST`   |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true"></a></p>
 

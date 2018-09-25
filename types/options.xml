@@ -1,6 +1,6 @@
 <types>
   <import name="OutgoingHttpHeaders" from="http" />
-  <type name="Options" desc="Options for requests.">
+  <type name="Options" desc="Options for requests." noToc>
     <prop name="data">
       Optional data to send to the server with the request.
     </prop>
