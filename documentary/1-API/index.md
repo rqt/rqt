@@ -13,9 +13,9 @@ import rqt, { jqt, bqt, sqt, aqt, Session } from 'rqt'
 ```table Requests
 [
   ["Function", "Meaning", "Return type"],
-  ["`rqt`", "String Request", "Request a web page and return the result as a string."],
+  ["[`rqt`](#async-rqturl-stringoptions-options-string)", "String Request", "Request a web page and return the result as a string."],
   ["`jqt`", "JSON Request", "Parse result as a `JSON` object."],
-  ["`bqt`", "Binary Request", "Result will be returned as a buffer."],
+  ["[`bqt`](#async-bqturl-stringoptions-options-string)", "Binary Request", "Result will be returned as a buffer."],
   ["`sqt`", "Stream Request", "Result is returned as a stream."],
   ["`aqt`", "Advanced Request", "Result will contain headers and status code, alias for `@rqt/aqt`."]
 ]

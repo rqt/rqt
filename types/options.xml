@@ -10,6 +10,9 @@
     <prop opt type="OutgoingHttpHeaders" name="headers">
       Headers to use for the request.
     </prop>
+    <prop boolean name="compress" default="true">
+      Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response.
+    </prop>
     <prop opt string name="method" default="POST">
       What HTTP method to use to send data.
     </prop>

@@ -1,4 +1,4 @@
-import { HTTPContext } from 'https-context'
+import idioCore from '@idio/core'
 /* start example */
 import rqt from '../../src'
 
@@ -19,9 +19,18 @@ const Request = async (url) => {
 /* end example */
 
 (async () => {
-  const c = new HTTPContext()
-  await c._init()
-  c.setResponse('Hello World')
-  await Request(c.url)
+  const { url } = await idioCore({
+    bodyparser: { use: true },
+    async test(ctx, next) {
+      ctx.body = JSON.stringify({
+        res: 'You have requested:',
+        body: ctx.request.body,
+        method: ctx.method,
+        headers: ctx.request.headers,
+      }, null, 2)
+      await next()
+    },
+  }, { port: 5001 })
+  await Request(url)
   process.exit()
 })()

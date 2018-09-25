@@ -7,12 +7,13 @@ import aqt from '@rqt/aqt'
  * @param {*} options.data Optional data to send to the server with the request.
  * @param {'form'|'json'} [options.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @param {OutgoingHttpHeaders} [options.headers] Headers to use for the request.
+ * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
  * @param {string} [options.method="POST"] What HTTP method to use to send data. Default `POST`.
  */
 export const rqt = async (address, options = {}) => {
-  const { data, type, headers, method } = options
+  const { data, type, headers, method, compress } = options
   const { body } = await aqt(address, {
-    data, type, headers, method,
+    data, type, headers, method, compress,
   })
   /** @type {string} */
   const r = body
@@ -22,15 +23,16 @@ export const rqt = async (address, options = {}) => {
 /**
  * Request a page and return the body as a buffer.
  * @param {string} address The URL such as http://example.com/api.
- * @param {Options} [config] Options for requests.
- * @param {*} config.data Optional data to send to the server with the request.
- * @param {'form'|'json'} [config.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
- * @param {OutgoingHttpHeaders} [config.headers] Headers to use for the request.
- * @param {string} [config.method="POST"] What HTTP method to use to send data. Default `POST`.
+ * @param {Options} [options] Options for requests.
+ * @param {*} options.data Optional data to send to the server with the request.
+ * @param {'form'|'json'} [options.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
+ * @param {OutgoingHttpHeaders} [options.headers] Headers to use for the request.
+ * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
+ * @param {string} [options.method="POST"] What HTTP method to use to send data. Default `POST`.
  */
-export const bqt = async (address, config) => {
+export const bqt = async (address, options) => {
   const c = {
-    ...config,
+    ...options,
     binary: true,
   }
   const  { body } = await aqt(address, c)
@@ -46,6 +48,7 @@ export const bqt = async (address, config) => {
  * @param {*} config.data Optional data to send to the server with the request.
  * @param {'form'|'json'} [config.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @param {OutgoingHttpHeaders} [config.headers] Headers to use for the request.
+ * @param {boolean} [config.compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
  * @param {string} [config.method="POST"] What HTTP method to use to send data. Default `POST`.
  */
 export const srqt = async (address, config) => {
@@ -63,5 +66,6 @@ export const srqt = async (address, config) => {
  * @prop {*} data Optional data to send to the server with the request.
  * @prop {'form'|'json'} [type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @prop {OutgoingHttpHeaders} [headers] Headers to use for the request.
+ * @prop {boolean} [compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
  * @prop {string} [method="POST"] What HTTP method to use to send data. Default `POST`.
  */

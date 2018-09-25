@@ -31,13 +31,13 @@ The package can be used from Node.js as multiple functions for different kinds o
 import rqt, { jqt, bqt, sqt, aqt, Session } from 'rqt'
 ```
 
-| Function |     Meaning      |                            Return type                             |
-| -------- | ---------------- | ------------------------------------------------------------------ |
-| `rqt` | String Request   | Request a web page and return the result as a string.              |
-| `jqt` | JSON Request     | Parse result as a `JSON` object.   |
-| `bqt` | Binary Request   | Result will be returned as a buffer.                               |
-| `sqt` | Stream Request   | Result is returned as a stream.                                    |
-| `aqt` | Advanced Request | Result will contain headers and status code, alias for `@rqt/aqt`. |
+|                      Function                       |     Meaning      |                            Return type                             |
+| --------------------------------------------------- | ---------------- | ------------------------------------------------------------------ |
+| [`rqt`](#async-rqturl-stringoptions-options-string) | String Request   | Request a web page and return the result as a string.              |
+| `jqt`              | JSON Request     | Parse result as a `JSON` object.   |
+| [`bqt`](#async-bqturl-stringoptions-options-string) | Binary Request   | Result will be returned as a buffer.                               |
+| `sqt`             | Stream Request   | Result is returned as a stream.                                    |
+| `aqt`             | Advanced Request | Result will contain headers and status code, alias for `@rqt/aqt`. |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
 
@@ -116,10 +116,10 @@ const Request = async (url) => {
 Hello World
 ```
 
-To send data to the server, add options.
+To send data to the server, add some [options](#options-type).
 
 ```js
-import rqt from '../../src'
+import rqt from 'rqt'
 
 const Request = async (url) => {
   const res = await rqt(url, {
@@ -134,6 +134,24 @@ const Request = async (url) => {
     method: 'PUT',
   })
   console.log(res)
+}
+```
+```json5
+{
+  "res": "You have requested:",
+  "body": {
+    "username": "new-user",
+    "password": "pass123"
+  },
+  "method": "PUT",
+  "headers": {
+    "user-agent": "@rqt/rqt (Node.js)",
+    "content-type": "application/x-www-form-urlencoded",
+    "content-length": "34",
+    "accept-encoding": "gzip, deflate",
+    "host": "localhost:5001",
+    "connection": "close"
+  }
 }
 ```
 
