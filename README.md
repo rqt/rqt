@@ -11,6 +11,7 @@
 - [`Options` Type](#options-type)
 - [`async rqt(url: string, options?: Options): string`](#async-rqturl-stringoptions-options-string)
 - [`async bqt(url: string, options?: Options): Buffer`](#async-bqturl-stringoptions-options-buffer)
+- [`async jqt(url: string, options?: Options): Object`](#async-jqturl-stringoptions-options-object)
 - [`async sqt(url: string, options?: Options): Readable`](#async-sqturl-stringoptions-options-readable)
 - [`Session` Class](#session-class)
     * [`constructor(headers?: object): Session`](#constructorheaders-object-session)
@@ -130,10 +131,31 @@ const Request = async (url) => {
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
 
+## `async jqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Object`
+
+Request a web page, and return the result as an object.
+
+```js
+/* start example */
+import { jqt } from 'rqt'
+
+const Request = async (url) => {
+  const res = await jqt(url)
+  console.log(JSON.stringify(res, null, 2))
+}
+```
+```
+{
+  "Hello": "World"
+}
+```
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>
+
 ## `async sqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Readable`
 
 Request a web page as a stream.
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true"></a></p>
 
 ## `Session` Class
 
