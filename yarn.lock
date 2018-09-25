@@ -20,9 +20,9 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@artdeco/clean-stack/-/clean-stack-1.0.0.tgz#36ff9c9f66e6cb1eb0bfa90341be21cba70c7ea6"
 
-"@rqt/aqt@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@rqt/aqt/-/aqt-1.0.2.tgz#6136873950b6bb0e104276c6ba0f85ec91a74b94"
+"@rqt/aqt@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@rqt/aqt/-/aqt-1.1.0.tgz#e5f669a0b27d5f17f97ddaf734265311ea0451e6"
 
 "@wrote/clone@1.0.1":
   version "1.0.1"
@@ -117,9 +117,9 @@ difflib@~0.2.1:
   dependencies:
     heap ">= 0.2.0"
 
-documentary@1.19.0:
-  version "1.19.0"
-  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.19.0.tgz#fc45028e19b2e6b1d47ba1a7449bdf0815869d1d"
+documentary@1.20.1:
+  version "1.20.1"
+  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.20.1.tgz#07eed06dec4ea4e69704840e115f7bd79917736b"
   dependencies:
     "@wrote/clone" "1.0.1"
     "@wrote/ensure-path" "1.0.3"
@@ -131,6 +131,7 @@ documentary@1.19.0:
     restream "3.2.1"
     rexml "1.1.0"
     spawncommand "2.1.0"
+    typal "1.2.0"
     which-stream "1.0.1"
 
 dreamopt@~0.6.0:
@@ -254,6 +255,13 @@ spawncommand@2.1.0:
   resolved "https://registry.yarnpkg.com/spawncommand/-/spawncommand-2.1.0.tgz#a5ef60ae7892e8718a9c717fc52fe5f54521e0de"
   dependencies:
     catchment "3.1.1"
+
+typal@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/typal/-/typal-1.2.0.tgz#b9e24fa8d187adf7819c12595cd142a80be18f5f"
+  dependencies:
+    mismatch "1.0.3"
+    rexml "1.1.0"
 
 usually@1.0.0:
   version "1.0.0"

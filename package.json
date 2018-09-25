@@ -9,7 +9,9 @@
     "test-watch": "zoroaster test/spec -b -w",
     "test-build": "BABEL_ENV=test-build yarn t test/spec",
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
-    "d": "NODE_DEBUG=doc doc src/index.js -g",
+    "d1": "NODE_DEBUG=doc doc src/index.js -g",
+    "d2": "NODE_DEBUG=doc doc src/lib/index.js -g",
+    "d": "yarn-s d1 d2",
     "lint": "eslint .",
     "b": "alamode src -o build",
     "build": "yarn-s d b doc",
@@ -35,14 +37,14 @@
   "homepage": "https://github.com/rqt/rqt#readme",
   "devDependencies": {
     "alamode": "1.5.1",
-    "documentary": "1.19.0",
+    "documentary": "1.20.1",
     "eslint-config-artdeco": "1.0.1",
     "https-context": "1.0.3",
     "yarn-s": "1.1.0",
     "zoroaster": "3.5.1"
   },
   "dependencies": {
-    "@rqt/aqt": "1.0.2",
+    "@rqt/aqt": "1.1.0",
     "catchment": "3.1.1",
     "erotic": "2.0.1"
   }
