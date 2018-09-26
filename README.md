@@ -34,13 +34,13 @@ The package can be used from Node.js as multiple functions for different kinds o
 import rqt, { jqt, bqt, aqt, Session } from 'rqt'
 ```
 
-|                         Function                          |     Meaning      |                                          Return type                                          |
-| --------------------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------- |
-| [`rqt`](#async-rqturl-stringoptions-options-string) | String Request   | Request a web page and return the result as a string.                                         |
-| [`jqt`]((#async-jqturl-stringoptions-options-string)) | JSON Request     | Parse the result as a `JSON` object.                          |
-| [`bqt`](#async-bqturl-stringoptions-options-string) | Binary Request   | The result will be returned as a buffer.                                                      |
-| [`aqt`](#async-aqturl-stringoptions-aqtoptions-aqtreturn) | Advanced Request | In addition to the body, the result will contain headers and status, an alias for `@rqt/aqt`. |
-| [`Session`](#session-class) | Session          | Proxies all other methods from this package, but remembers cookies.                           |
+|                         Function                          |       Meaning        |                                          Return type                                          |
+| --------------------------------------------------------- | -------------------- | --------------------------------------------------------------------------------------------- |
+| [`rqt`](#async-rqturl-stringoptions-options-string) | String Request       | Request a web page and return the result as a string.                                         |
+| [`jqt`]((#async-jqturl-stringoptions-options-string)) | JSON Request         | Parse the result as a `JSON` object.                          |
+| [`bqt`](#async-bqturl-stringoptions-options-string) | Binary Request       | The result will be returned as a buffer.                                                      |
+| [`aqt`](#async-aqturl-stringoptions-aqtoptions-aqtreturn) | Advanced Request     | In addition to the body, the result will contain headers and status, an alias for `@rqt/aqt`. |
+| [`Session`](#session-class) | Session With Cookies | Proxies all other methods from this package, but remembers cookies.                           |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
 
@@ -206,7 +206,7 @@ const Request = async (url) => {
 
 ## `async aqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: AqtOptions,`<br/>`): AqtReturn`
 
-Request a web page and return additional information about the request.
+Request a web page and return additional information about the request. This method is also available as a standalone package: [`@rqt/aqt`](https://github.com/rqt/aqt).
 
 `import('http').OutgoingHttpHeaders` __<a name="type-outgoinghttpheaders">`OutgoingHttpHeaders`</a>__
 
@@ -253,7 +253,7 @@ __<a name="type-sessionoptions">`SessionOptions`</a>__: Options for a session.
 The methods in the _Session_ class are proxied to the respective methods in the API, but the cookies and session's headers will be set automatically.
 
 ```js
-import { Session } from '../../src'
+import { Session } from 'rqt'
 
 const SessionRequest = async (url) => {
   // 0. Create a Session.
