@@ -121,23 +121,45 @@ const Request = async (url) => {
 }
 ```
 ```json5
-{
-  "res": "You have requested:",
-  "body": {
-    "username": "new-user",
-    "password": "pass123"
-  },
-  "method": "PUT",
-  "headers": {
-    "user-agent": "@rqt/rqt (Node.js)",
-    "content-type": "application/x-www-form-urlencoded",
-    "content-length": "34",
-    "accept-encoding": "gzip, deflate",
-    "host": "localhost:5001",
-    "connection": "close"
-  }
+You have requested with PUT:
+Body: {
+  "username": "new-user",
+  "password": "pass123"
+}
+Headers: {
+  "user-agent": "@rqt/rqt (Node.js)",
+  "content-type": "application/x-www-form-urlencoded",
+  "content-length": "34",
+  "accept-encoding": "gzip, deflate",
+  "host": "localhost:5001",
+  "connection": "close"
 }
 ```
+
+<details>
+<summary>Show Server</summary>
+
+```js
+import idioCore from '@idio/core'
+
+const Server = async () => {
+  const { url } = await idioCore({
+    bodyparser: { use: true },
+    /** @type {import('koa').Middleware} */
+    async test(ctx, next) {
+      ctx.body = `You have requested with ${ctx.method}:
+Body: ${JSON.stringify(ctx.request.body, null, 2)}
+Headers: ${JSON.stringify(ctx.request.headers, null, 2)}
+`
+      await next()
+    },
+  }, { port: 5001 })
+  return url
+}
+
+export default Server
+```
+</details><br/>
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
 

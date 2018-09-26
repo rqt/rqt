@@ -18,7 +18,13 @@ Request a web page, and return the result as a string.
 
 To send data to the server, add some [options](#options-type).
 
-%EXAMPLE: example/options/rqt.js, ../../src => rqt%
-%FORK-json5 example example/options/rqt.js%
+%EXAMPLE: example/options/rqt/index.js, ../../../src => rqt%
+%FORK-json5 example example/options/rqt%
+
+<details>
+<summary>Show Server</summary>
+
+%EXAMPLE: example/options/rqt/Server.js%
+</details><br/>
 
 %~%
