@@ -4,19 +4,59 @@ The _Session_ class allows to remember cookies set during all requests. It will 
 
 ```#### constructor => Session
 [
-  ["headers?", "object"]
+  ["options?", "SessionOptions"]
 ]
 ```
 
-Create an instance of a `Session` class. All headers specified here will be present for each request (unless overridden by the `request` method).
+Create an instance of the _Session_ class. All headers specified in the constructor will be present for each request (unless overridden by individual request options).
 
-```#### async request => any
+%TYPEDEF types/session.xml%
+
+The methods in the _Session_ class are proxied to the respective methods in the API, but the cookies and session's headers will be set automatically.
+
+%EXAMPLE: example/Session/index.js, ../src => rqt%
+%FORK example example/Session%
+
+<details>
+<summary>Show Server</summary>
+
+%EXAMPLE: example/Session/server.js%
+</details>
+
+```#### async rqt => String
 [
   ["location", "string"],
   ["options?", "Options"]
 ]
 ```
 
-Request a page. All options are the same as accepted by the `rqt` functions.
+Request a page as a string. All [options](#options-type) are the same as accepted by the `rqt` functions.
 
-%EXAMPLE: example/session.js, ../src => rqt%
+```#### async jqt => String
+[
+  ["location", "string"],
+  ["options?", "Options"]
+]
+```
+
+Request a page as an object.
+
+```#### async bqt => String
+[
+  ["location", "string"],
+  ["options?", "Options"]
+]
+```
+
+Request a page as a buffer.
+
+```#### async aqt => AqtReturn
+[
+  ["location", "string"],
+  ["options?", "AqtOptions"]
+]
+```
+
+Request a page and return parsed body, headers and status.
+
+%~%

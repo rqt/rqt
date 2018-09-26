@@ -1,11 +1,24 @@
-```## async sqt => Readable
+```## async aqt => AqtReturn
+[
+  ["url", "string"],
+  ["options?", "AqtOptions"]
+]
+```
+
+Request a web page and return additional information about the request.
+
+%TYPEDEF node_modules/@rqt/aqt/types/index.xml%
+
+%TYPEDEF node_modules/@rqt/aqt/types/return.xml%
+
+<!-- ```## async sqt => Readable
 [
   ["url", "string"],
   ["options?", "Options"]
 ]
 ```
 
-Request a web page as a stream.
+Request a web page as a stream. -->
 <!--
 ```table
 [

@@ -1,5 +1,5 @@
 import idioCore from '@idio/core'
-/* start example *//* start example */
+/* start example */
 import { jqt } from '../src'
 
 const Request = async (url) => {

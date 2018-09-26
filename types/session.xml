@@ -1,0 +1,10 @@
+<types>
+  <type name="SessionOptions" desc="Options for a session.">
+    <prop string opt name="host">
+      The prefix to each request, such as `https://rqt.biz`.
+    </prop>
+    <prop opt type="OutgoingHttpHeaders" name="headers">
+      Headers to use for each request.
+    </prop>
+  </type>
+</types>
