@@ -169,11 +169,6 @@ const extractCookies = ({ 'set-cookie': setCookie = [] } = {}) => {
   }, {})
 }
 
-/**
- * @typedef {Object} SessionOptions
- * @prop {OutgoingHttpHeaders} [headers] Headers to send with each request.
- */
-
 /* documentary types/options.xml */
 /**
  * @typedef {import('http').OutgoingHttpHeaders} OutgoingHttpHeaders
