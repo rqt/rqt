@@ -32,7 +32,28 @@ export default class Session {
    */
   async rqt(location, options = {}) {
     const { body } = await this._request(location, options)
-    return body
+    /** @type {string} */
+    const r = body
+    return r
+  }
+  /**
+   * Make a request and return the body as buffer.
+   * @param {string} location The URL to which to make a request.
+   * @param {Options} options Options for requests.
+ * @param {*} [options.data] Optional data to send to the server with the request.
+ * @param {'form'|'json'} [options.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
+ * @param {OutgoingHttpHeaders} [options.headers] Headers to use for the request.
+ * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
+ * @param {string} [options.method="POST"] What HTTP method to use to send data. Default `POST`.
+   */
+  async bqt(location, options = {}) {
+    const { body } = await this._request(location, {
+      ...options,
+      binary: true,
+    })
+    /** @type {Buffer} */
+    const r = body
+    return r
   }
   /**
    * Make a request and return the parsed JSON body as an object.
@@ -46,7 +67,9 @@ export default class Session {
    */
   async jqt(location, options = {}) {
     const { body } = await this._request(location, options)
-    return body
+    /** @type {Object} */
+    const r = body
+    return r
   }
   getFullUrl(location) {
     if (this.host) {

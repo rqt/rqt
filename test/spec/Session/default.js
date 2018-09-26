@@ -1,21 +1,20 @@
 import { equal, deepEqual } from 'zoroaster/assert'
-import Session from '../../src/session'
-import Context from '../context'
-// import { version } from '../../package.json'
+import { HTTPContext } from 'https-context'
+import Session from '../../../src/lib/Session'
 
-/** @type {Object.<string, (c: Context)>} */
+/** @type {Object.<string, (h: HTTPContext)>} */
 const T = {
-  context: Context,
+  context: HTTPContext,
   async 'sets headers for all requests'({ url, getState }) {
     const s = new Session({
       headers: {
         'User-Agent': 'test-ua',
       },
     })
-    await s.request(url)
+    await s.rqt(url)
     const { headers: h1 } = getState()
     equal(h1['user-agent'], 'test-ua')
-    await s.request(url)
+    await s.rqt(url)
     const { headers: h2 } = getState()
     equal(h2['user-agent'], 'test-ua')
   },
@@ -25,13 +24,13 @@ const T = {
         'User-Agent': 'test-ua',
       },
     })
-    await s.request(url, {
+    await s.rqt(url, {
       headers: {
         'User-Agent': 'test-ua-override',
       },
     })
-    const { headers: h2 } = getState()
-    equal(h2['user-agent'], 'test-ua-override')
+    const { headers } = getState()
+    equal(headers['user-agent'], 'test-ua-override')
   },
   async 'sets cookies'({ url, setHeaders }) {
     const s = new Session({
@@ -43,7 +42,7 @@ const T = {
     setHeaders({
       'set-cookie': `sessionid=${sessionid}; HttpOnly; Path=/`,
     })
-    await s.request(url)
+    await s.rqt(url)
     deepEqual(s.cookies, {
       sessionid,
     })
@@ -57,11 +56,11 @@ const T = {
     setHeaders({
       'set-cookie': 'sessionid=38afes7a8; HttpOnly; Path=/',
     })
-    await s.request(url)
+    await s.rqt(url)
     setHeaders({
       'set-cookie': 'U=123; HttpOnly; Path=/',
     })
-    await s.request(url)
+    await s.rqt(url)
     deepEqual(s.cookies, {
       sessionid: '38afes7a8',
       U: '123',
@@ -76,11 +75,11 @@ const T = {
     setHeaders({
       'set-cookie': 'sessionid=38afes7a8; HttpOnly; Path=/',
     })
-    await s.request(url)
+    await s.rqt(url)
     setHeaders({
       'set-cookie': 'sessionid=; HttpOnly; Path=/',
     })
-    await s.request(url)
+    await s.rqt(url)
     deepEqual(s.cookies, {})
   },
 }
