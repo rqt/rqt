@@ -1,5 +1,14 @@
 ## 20 June 2018
 
+### 3.0.0
+
+- [breaking] Compression by default.
+- [feature] Split into `rqt`, `jqt`, `bqt` and `aqt`.
+- [feature] Session methods.
+- [doc] Improve documentation, add server examples.
+
+## 20 June 2018
+
 ### 2.0.0
 
 - [breaking] Module system.
