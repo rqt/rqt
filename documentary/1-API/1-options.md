@@ -1,6 +1,6 @@
 ## `Options` Type
 
-`rqt`, `jqt`, `bqt` and `sqt` accept options to set headers and send data as the second argument after the URL.
+Each request function accept options to set headers and send data as the second argument after the URL.
 
 %TYPEDEF types/options.xml%
 

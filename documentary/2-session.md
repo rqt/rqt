@@ -32,15 +32,6 @@ The methods in the _Session_ class are proxied to the respective methods in the 
 
 Request a page as a string. All [options](#options-type) are the same as accepted by the `rqt` functions.
 
-```#### async jqt => String
-[
-  ["location", "string"],
-  ["options?", "Options"]
-]
-```
-
-Request a page as an object.
-
 ```#### async bqt => String
 [
   ["location", "string"],
@@ -49,6 +40,15 @@ Request a page as an object.
 ```
 
 Request a page as a buffer.
+
+```#### async jqt => String
+[
+  ["location", "string"],
+  ["options?", "Options"]
+]
+```
+
+Request a page as an object.
 
 ```#### async aqt => AqtReturn
 [

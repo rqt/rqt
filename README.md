@@ -11,16 +11,16 @@
 - [`Options` Type](#options-type)
 - [`async rqt(url: string, options?: Options): string`](#async-rqturl-stringoptions-options-string)
 - [`async bqt(url: string, options?: Options): Buffer`](#async-bqturl-stringoptions-options-buffer)
+- [`async jqt(url: string, options?: Options): Object`](#async-jqturl-stringoptions-options-object)
 - [`async aqt(url: string, options?: AqtOptions): AqtReturn`](#async-aqturl-stringoptions-aqtoptions-aqtreturn)
   * [`AqtOptions`](#type-aqtoptions)
   * [`AqtReturn`](#type-aqtreturn)
-- [`async jqt(url: string, options?: Options): Object`](#async-jqturl-stringoptions-options-object)
 - [`Session` Class](#session-class)
     * [`constructor(options?: SessionOptions): Session`](#constructoroptions-sessionoptions-session)
       * [`SessionOptions`](#type-sessionoptions)
     * [`async rqt(location: string, options?: Options): String`](#async-rqtlocation-stringoptions-options-string)
-    * [`async jqt(location: string, options?: Options): String`](#async-jqtlocation-stringoptions-options-string)
     * [`async bqt(location: string, options?: Options): String`](#async-bqtlocation-stringoptions-options-string)
+    * [`async jqt(location: string, options?: Options): String`](#async-jqtlocation-stringoptions-options-string)
     * [`async aqt(location: string, options?: AqtOptions): AqtReturn`](#async-aqtlocation-stringoptions-aqtoptions-aqtreturn)
 - [Copyright](#copyright)
 
@@ -34,18 +34,20 @@ The package can be used from Node.js as multiple functions for different kinds o
 import rqt, { jqt, bqt, aqt, Session } from 'rqt'
 ```
 
-|                      Function                       |     Meaning      |                                          Return type                                          |
-| --------------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------- |
+|                         Function                          |     Meaning      |                                          Return type                                          |
+| --------------------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------- |
 | [`rqt`](#async-rqturl-stringoptions-options-string) | String Request   | Request a web page and return the result as a string.                                         |
-| `jqt`              | JSON Request     | Parse the result as a `JSON` object.                          |
+| [`jqt`]((#async-jqturl-stringoptions-options-string)) | JSON Request     | Parse the result as a `JSON` object.                          |
 | [`bqt`](#async-bqturl-stringoptions-options-string) | Binary Request   | The result will be returned as a buffer.                                                      |
-| `aqt`             | Advanced Request | In addition to the body, the result will contain headers and status, an alias for `@rqt/aqt`. |
+| [`aqt`](#async-aqturl-stringoptions-aqtoptions-aqtreturn) | Advanced Request | In addition to the body, the result will contain headers and status, an alias for `@rqt/aqt`. |
 
-  %~%
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
+
+  
 
 ## `Options` Type
 
-`rqt`, `jqt`, `bqt` and `sqt` accept options to set headers and send data as the second argument after the URL.
+Each request function accept options to set headers and send data as the second argument after the URL.
 
 `import('http').OutgoingHttpHeaders` __<a name="type-outgoinghttpheaders">`OutgoingHttpHeaders`</a>__
 
@@ -59,7 +61,7 @@ __<a name="type-options">`Options`</a>__: Options for requests.
 | compress | _boolean_                                          | Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. | `true`   |
 | method   | _string_                                           | What HTTP method to use to send data.                                                                                           | `POST`   |
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true"></a></p>
 
 ## `async rqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): string`
 
@@ -116,7 +118,7 @@ const Request = async (url) => {
 }
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
 
 ## `async bqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Buffer`
 
@@ -134,7 +136,27 @@ const Request = async (url) => {
 <Buffer 48 65 6c 6c 6f 20 57 6f 72 6c 64>
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
+
+## `async jqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Object`
+
+Request a web page, and return the result as an object.
+
+```js
+import { jqt } from 'rqt'
+
+const Request = async (url) => {
+  const res = await jqt(url)
+  console.log(JSON.stringify(res, null, 2))
+}
+```
+```
+{
+  "Hello": "World"
+}
+```
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>
 
 ## `async aqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: AqtOptions,`<br/>`): AqtReturn`
 
@@ -165,27 +187,7 @@ __<a name="type-aqtreturn">`AqtReturn`</a>__
 | __statusCode*__    | _number_                                           | The status code returned by the server.                                                                                                                                                                                                            |
 | __statusMessage*__ | _string_                                           | The status message set by the server.                                                                                                                                                                                                              |
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
-
-## `async jqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Object`
-
-Request a web page, and return the result as an object.
-
-```js
-import { jqt } from 'rqt'
-
-const Request = async (url) => {
-  const res = await jqt(url)
-  console.log(JSON.stringify(res, null, 2))
-}
-```
-```
-{
-  "Hello": "World"
-}
-```
-
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true"></a></p>
 
 ## `Session` Class
 
@@ -304,19 +306,19 @@ export default Server
 
 Request a page as a string. All [options](#options-type) are the same as accepted by the `rqt` functions.
 
-#### `async jqt(`<br/>&nbsp;&nbsp;`location: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): String`
-
-Request a page as an object.
-
 #### `async bqt(`<br/>&nbsp;&nbsp;`location: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): String`
 
 Request a page as a buffer.
+
+#### `async jqt(`<br/>&nbsp;&nbsp;`location: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): String`
+
+Request a page as an object.
 
 #### `async aqt(`<br/>&nbsp;&nbsp;`location: string,`<br/>&nbsp;&nbsp;`options?: AqtOptions,`<br/>`): AqtReturn`
 
 Request a page and return parsed body, headers and status.
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/7.svg?sanitize=true"></a></p>
 
 ## Copyright
 
