@@ -1,29 +1,20 @@
-import { read } from 'wrote'
-import { resolve } from 'path'
-import idio from 'idio'
+import read from '@wrote/read'
+import { join } from 'path'
+import idioCore from '@idio/core'
 
-const FIXTURE = resolve(__dirname, '../fixture')
+const FIXTURE = join(__dirname, '../fixture')
 
 export default class IdioContext {
-  async _init() {
-
-  }
-  async start(config = {}) {
-    const mw = config.middleware || {}
-    const middleware = {
-      ...mw,
+  async start(middleware = {}) {
+    const { url, app } = await idioCore({
+      ...middleware,
       static: { use: true, root: FIXTURE },
-    }
-    const res = await idio({
+    }, {
       port: 0,
-      ...config,
-      middleware,
     })
 
-    const { url, app } = res
     this.app = app
     this.url = url
-    return res
   }
   get fixtureName() {
     return 'chapter1.txt'
@@ -39,10 +30,10 @@ export default class IdioContext {
     if (this.app) await this.app.destroy()
   }
   get fixturePath() {
-    return resolve(FIXTURE, this.fixtureName)
+    return join(FIXTURE, this.fixtureName)
   }
   get fixtureJsonPath() {
-    return resolve(FIXTURE, this.fixtureJsonName)
+    return join(FIXTURE, this.fixtureJsonName)
   }
   async readFixture() {
     Dracula = Dracula || read(this.fixturePath)

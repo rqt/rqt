@@ -1,11 +1,11 @@
-import { equal, ok } from 'zoroaster/assert'
+import { equal, ok, deepEqual } from 'zoroaster/assert'
 import SessionServer from '../../context/SessionServer'
 import Session from '../../../src/lib/Session'
 
 /** @type {Object.<string, (c: SessionServer)} */
 const ts = {
   context: SessionServer,
-  async '!can persist session'({ SessionKey, url }) {
+  async 'can persist session'({ SessionKey, url }) {
     // 0. Create a Session.
     const session = new Session({
       host: url,
@@ -43,6 +43,15 @@ const ts = {
     const res2 = await session.bqt(location)
     ok(res2 instanceof Buffer)
     equal(`${res2}`, 'Hello, test')
+
+    // 4. Request Status With Aqt.
+    const { statusCode: sc, statusMessage: sm } = await session.aqt(location, {
+      justHeaders: true,
+    })
+    deepEqual({ statusCode: sc, statusMessage: sm }, {
+      statusCode: 200,
+      statusMessage: 'OK',
+    })
   },
 }
 

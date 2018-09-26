@@ -80,12 +80,14 @@ export default class Session {
   /**
    * Make a request and return the body, headers and status.
    * @param {string} location The URL to which to make a request.
-   * @param {Options} options Options for requests.
- * @param {*} [options.data] Optional data to send to the server with the request.
+   * @param {AqtOptions} options Configuration for requests.
+ * @param {Object} options.data Optional data to send to the server with the request.
  * @param {'form'|'json'} [options.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @param {OutgoingHttpHeaders} [options.headers] Headers to use for the request.
  * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
- * @param {string} [options.method="POST"] What HTTP method to use to send data. Default `POST`.
+ * @param {string} [options.headers="POST"] What HTTP method to use to send data. Default `POST`.
+ * @param {boolean} [options.binary=false] Whether to return a buffer instead of a string. Default `false`.
+ * @param {boolean} [options.justHeaders=false] Whether to stop the request after response headers were received, without waiting for the data. Default `false`.
    */
   async aqt(location, options = {}) {
     const res = await this._request(location, options)
@@ -189,4 +191,18 @@ const extractCookies = ({ 'set-cookie': setCookie = [] } = {}) => {
  * @typedef {Object} SessionOptions Options for a session.
  * @prop {string} [host] The prefix to each request, such as `https://rqt.biz`.
  * @prop {OutgoingHttpHeaders} [headers] Headers to use for each request.
+ */
+
+/* documentary node_modules/@rqt/aqt/types/index.xml */
+/**
+ * @typedef {import('http').OutgoingHttpHeaders} OutgoingHttpHeaders
+ *
+ * @typedef {Object} AqtOptions Configuration for requests.
+ * @prop {Object} data Optional data to send to the server with the request.
+ * @prop {'form'|'json'} [type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
+ * @prop {OutgoingHttpHeaders} [headers] Headers to use for the request.
+ * @prop {boolean} [compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
+ * @prop {string} [headers="POST"] What HTTP method to use to send data. Default `POST`.
+ * @prop {boolean} [binary=false] Whether to return a buffer instead of a string. Default `false`.
+ * @prop {boolean} [justHeaders=false] Whether to stop the request after response headers were received, without waiting for the data. Default `false`.
  */

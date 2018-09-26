@@ -1,10 +1,4 @@
-import { HTTPContext } from 'https-context'
-
-export default class Context extends HTTPContext {
-  constructor() {
-    super()
-  }
-
+export default class Context {
   get data() {
     return {
       hello: 'world',
