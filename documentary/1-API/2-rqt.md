@@ -14,7 +14,9 @@ Request a web page, and return the result as a string.
 <summary>Show Server</summary>
 
 %EXAMPLE: example/rqt/Server.js%
-</details><br/>
+</details>
+
+---
 
 To send data to the server, add some [options](#options-type).
 
@@ -25,6 +27,6 @@ To send data to the server, add some [options](#options-type).
 <summary>Show Server</summary>
 
 %EXAMPLE: example/options/rqt/Server.js%
-</details><br/>
+</details>
 
 %~%

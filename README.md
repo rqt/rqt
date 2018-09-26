@@ -40,6 +40,7 @@ import rqt, { jqt, bqt, aqt, Session } from 'rqt'
 | [`jqt`]((#async-jqturl-stringoptions-options-string)) | JSON Request     | Parse the result as a `JSON` object.                          |
 | [`bqt`](#async-bqturl-stringoptions-options-string) | Binary Request   | The result will be returned as a buffer.                                                      |
 | [`aqt`](#async-aqturl-stringoptions-aqtoptions-aqtreturn) | Advanced Request | In addition to the body, the result will contain headers and status, an alias for `@rqt/aqt`. |
+| [`Session`](#session-class) | Session          | Proxies all other methods from this package, but remembers cookies.                           |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
 
@@ -98,7 +99,9 @@ const Server = async () => {
 
 export default Server
 ```
-</details><br/>
+</details>
+
+---
 
 To send data to the server, add some [options](#options-type).
 
@@ -159,7 +162,7 @@ Headers: ${JSON.stringify(ctx.request.headers, null, 2)}
 
 export default Server
 ```
-</details><br/>
+</details>
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
 
