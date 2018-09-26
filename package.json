@@ -4,10 +4,9 @@
   "description": "request library",
   "main": "build",
   "scripts": {
-    "t": "zoroaster -b",
-    "test": "zoroaster test/spec -b",
-    "test-watch": "zoroaster test/spec -b -w",
-    "test-build": "BABEL_ENV=test-build yarn t test/spec",
+    "t": "zoroaster -a",
+    "test": "yarn t test/spec",
+    "test-build": "ALAMODE_ENV=test-build yarn test",
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
     "d1": "NODE_DEBUG=doc doc src/index.js -g",
     "d2": "NODE_DEBUG=doc doc src/lib/index.js -g",
@@ -41,6 +40,7 @@
   "homepage": "https://github.com/rqt/rqt#readme",
   "devDependencies": {
     "@idio/core": "1.0.2",
+    "@wrote/read": "1.0.0",
     "alamode": "1.5.1",
     "documentary": "1.20.1",
     "eslint-config-artdeco": "1.0.1",
@@ -49,7 +49,7 @@
     "zoroaster": "3.5.1"
   },
   "dependencies": {
-    "@rqt/aqt": "1.1.0",
+    "@rqt/aqt": "1.1.1",
     "catchment": "3.1.1",
     "erotic": "2.0.1"
   }
