@@ -10,8 +10,8 @@
 - [API](#api)
 - [`Options` Type](#options-type)
 - [`async rqt(url: string, options?: Options): string`](#async-rqturl-stringoptions-options-string)
-- [`async bqt(url: string, options?: Options): Buffer`](#async-bqturl-stringoptions-options-buffer)
 - [`async jqt(url: string, options?: Options): Object`](#async-jqturl-stringoptions-options-object)
+- [`async bqt(url: string, options?: Options): Buffer`](#async-bqturl-stringoptions-options-buffer)
 - [`async aqt(url: string, options?: AqtOptions): AqtReturn`](#async-aqturl-stringoptions-aqtoptions-aqtreturn)
   * [`AqtOptions`](#type-aqtoptions)
   * [`AqtReturn`](#type-aqtreturn)
@@ -19,8 +19,8 @@
     * [`constructor(options?: SessionOptions): Session`](#constructoroptions-sessionoptions-session)
       * [`SessionOptions`](#type-sessionoptions)
     * [`async rqt(location: string, options?: Options): String`](#async-rqtlocation-stringoptions-options-string)
-    * [`async bqt(location: string, options?: Options): String`](#async-bqtlocation-stringoptions-options-string)
     * [`async jqt(location: string, options?: Options): String`](#async-jqtlocation-stringoptions-options-string)
+    * [`async bqt(location: string, options?: Options): String`](#async-bqtlocation-stringoptions-options-string)
     * [`async aqt(location: string, options?: AqtOptions): AqtReturn`](#async-aqtlocation-stringoptions-aqtoptions-aqtreturn)
 - [Copyright](#copyright)
 
@@ -120,24 +120,6 @@ const Request = async (url) => {
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
 
-## `async bqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Buffer`
-
-Request a web page, and return the result as a buffer.
-
-```js
-import { bqt } from 'rqt'
-
-const Request = async (url) => {
-  const res = await bqt(url)
-  console.log(res)
-}
-```
-```
-<Buffer 48 65 6c 6c 6f 20 57 6f 72 6c 64>
-```
-
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
-
 ## `async jqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Object`
 
 Request a web page, and return the result as an object.
@@ -154,6 +136,24 @@ const Request = async (url) => {
 {
   "Hello": "World"
 }
+```
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
+
+## `async bqt(`<br/>&nbsp;&nbsp;`url: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Buffer`
+
+Request a web page, and return the result as a buffer.
+
+```js
+import { bqt } from 'rqt'
+
+const Request = async (url) => {
+  const res = await bqt(url)
+  console.log(res)
+}
+```
+```
+<Buffer 48 65 6c 6c 6f 20 57 6f 72 6c 64>
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>
@@ -306,13 +306,13 @@ export default Server
 
 Request a page as a string. All [options](#options-type) are the same as accepted by the `rqt` functions.
 
-#### `async bqt(`<br/>&nbsp;&nbsp;`location: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): String`
-
-Request a page as a buffer.
-
 #### `async jqt(`<br/>&nbsp;&nbsp;`location: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): String`
 
 Request a page as an object.
+
+#### `async bqt(`<br/>&nbsp;&nbsp;`location: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): String`
+
+Request a page as a buffer.
 
 #### `async aqt(`<br/>&nbsp;&nbsp;`location: string,`<br/>&nbsp;&nbsp;`options?: AqtOptions,`<br/>`): AqtReturn`
 
