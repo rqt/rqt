@@ -95,4 +95,3 @@ module.exports.rqt = rqt
 module.exports.jqt = jqt
 module.exports.bqt = bqt
 module.exports.srqt = srqt
-//# sourceMappingURL=index.js.map

@@ -204,4 +204,3 @@ const extractCookies = ({ 'set-cookie': setCookie = [] } = {}) => {
 
 
 module.exports = Session
-//# sourceMappingURL=Session.js.map
