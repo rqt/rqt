@@ -1,3 +1,10 @@
+## 16 November 2018
+
+### 3.0.1
+
+- [dep-fix] Update `aqt` to have required dependencies.
+- [build] Build without source maps.
+
 ## 20 June 2018
 
 ### 3.0.0
