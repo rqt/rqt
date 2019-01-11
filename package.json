@@ -1,6 +1,6 @@
 {
   "name": "rqt",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Easy-To-Use Request Library That Supports String, JSON And Buffer Requests, GZip Compression And Session Maintenance.",
   "main": "build",
   "scripts": {
