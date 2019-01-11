@@ -46,10 +46,10 @@
     koa-static "5.0.0"
     server-destroy "1.0.1"
 
-"@rqt/aqt@1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@rqt/aqt/-/aqt-1.1.4.tgz#ba8ce996a2ae37be5d4b1d35adb245e2ab820bc9"
-  integrity sha512-+Jprs76RDgs5tKBzvGKNv+yaxMRqUAubrx23S75+aCsplEppc7ZIVxSrdAxjANEom4tkHedOXc9blDR/ZHCeUg==
+"@rqt/aqt@1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@rqt/aqt/-/aqt-1.1.5.tgz#f044af0353f7a959e351855abac3e78561c1d36c"
+  integrity sha512-5jLl1c1hHLcpPbeoRj7NHOXsskpDHk/CfU+MxKuEkM/1werlccNnMDp1wAJBZ0kSa6mb7BU5Pwd54gudFm9hXQ==
   dependencies:
     catchment "3.2.0"
     erotic "2.0.1"
