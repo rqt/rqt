@@ -7,7 +7,7 @@ const Server = async () => {
       ctx.body = 'Hello World'
       await next()
     },
-  })
+  }, { port: 0 })
   return url
 }
 

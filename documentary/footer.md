@@ -1,5 +1,5 @@
 ## Copyright
 
-(c) [Art Deco](https://artdeco.bz) 2018
+(c) [Rqt](https://rqt.biz) 2019
 
 %~ -1%

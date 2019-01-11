@@ -93,7 +93,7 @@ const Server = async () => {
       ctx.body = 'Hello World'
       await next()
     },
-  })
+  }, { port: 0 })
   return url
 }
 
@@ -218,7 +218,7 @@ __<a name="type-aqtoptions">`AqtOptions`</a>__: Configuration for requests.
 | type        | _'form'\|'json'_                                   | How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default.            | `'json'` |
 | headers     | _[OutgoingHttpHeaders](#type-outgoinghttpheaders)_ | Headers to use for the request.                                                                                                 | -        |
 | compress    | _boolean_                                          | Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. | `true`   |
-| headers     | _string_                                           | What HTTP method to use to send data.                                                                                           | `POST`   |
+| method      | _string_                                           | What HTTP method to use to send data.                                                                                           | `POST`   |
 | binary      | _boolean_                                          | Whether to return a buffer instead of a string.                                                                                 | `false`  |
 | justHeaders | _boolean_                                          | Whether to stop the request after response headers were received, without waiting for the data.                                 | `false`  |
 
@@ -368,6 +368,6 @@ Request a page and return parsed body, headers and status.
 
 ## Copyright
 
-(c) [Art Deco](https://artdeco.bz) 2018
+(c) [Rqt](https://rqt.biz) 2019
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/-1.svg?sanitize=true"></a></p>
