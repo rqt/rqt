@@ -13,7 +13,7 @@ const Server = async (SessionKey) => {
     },
     session: { use: true, keys: ['example'] },
     bodyparser: { use: true },
-  })
+  }, { port: 0 })
   router.get('/StartSession', async (ctx, next) => {
     ctx.session.SessionKey = SessionKey
     ctx.body = {
