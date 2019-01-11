@@ -1,5 +1,9 @@
 ## 11 January 2018
 
+### 3.0.3
+
+- [dep-fix] Do update `aqt` to have method documented.
+
 ### 3.0.2
 
 - [dep-fix] Update `aqt` to have method documented.
