@@ -12,10 +12,7 @@ let aqt = require('@rqt/aqt'); if (aqt && aqt.__esModule) aqt = aqt.default;
  * @param {number} [options.timeout] Timeout after which the request should cancel.
  */
        const rqt = async (address, options = {}) => {
-  const { data, type, headers, method, compress } = options
-  const { body } = await aqt(address, {
-    data, type, headers, method, compress,
-  })
+  const { body } = await aqt(address, options)
   /** @type {string} */
   const r = body
   return r
@@ -33,10 +30,7 @@ let aqt = require('@rqt/aqt'); if (aqt && aqt.__esModule) aqt = aqt.default;
  * @param {number} [options.timeout] Timeout after which the request should cancel.
  */
        const jqt = async (address, options = {}) => {
-  const { data, type, headers, method, compress } = options
-  const { body } = await aqt(address, {
-    data, type, headers, method, compress,
-  })
+  const { body } = await aqt(address, options)
   /** @type {*} */
   const r = body
   return r

@@ -12,10 +12,7 @@ import aqt from '@rqt/aqt'
  * @param {number} [options.timeout] Timeout after which the request should cancel.
  */
 export const rqt = async (address, options = {}) => {
-  const { data, type, headers, method, compress } = options
-  const { body } = await aqt(address, {
-    data, type, headers, method, compress,
-  })
+  const { body } = await aqt(address, options)
   /** @type {string} */
   const r = body
   return r
@@ -33,10 +30,7 @@ export const rqt = async (address, options = {}) => {
  * @param {number} [options.timeout] Timeout after which the request should cancel.
  */
 export const jqt = async (address, options = {}) => {
-  const { data, type, headers, method, compress } = options
-  const { body } = await aqt(address, {
-    data, type, headers, method, compress,
-  })
+  const { body } = await aqt(address, options)
   /** @type {*} */
   const r = body
   return r
