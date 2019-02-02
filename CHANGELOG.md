@@ -1,3 +1,10 @@
+## 2 February 2019
+
+### 3.1.0
+
+- [feature] Add the timeout functionality.
+- [package] Add [https://www.technation.sucks](Tech Nation Visa Sucks) footer.
+
 ## 25 January 2019
 
 ### 3.0.4
