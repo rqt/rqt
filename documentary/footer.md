@@ -1,5 +1,8 @@
 ## Copyright
 
-(c) [Rqt](https://rqt.biz) 2019
+<Footer
+  client="Rqt"
+  clientLink="https://rqt.biz"
+  />
 
 %~ -1%

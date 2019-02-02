@@ -27,8 +27,9 @@ export default class Session {
  * @param {*} [options.data] Optional data to send to the server with the request.
  * @param {'form'|'json'} [options.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @param {OutgoingHttpHeaders} [options.headers] Headers to use for the request.
- * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
+ * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response. Default `true`.
  * @param {string} [options.method="POST"] What HTTP method to use to send data. Default `POST`.
+ * @param {number} [options.timeout] Timeout after which the request should cancel.
    */
   async rqt(location, options = {}) {
     const { body } = await this._request(location, options)
@@ -43,8 +44,9 @@ export default class Session {
  * @param {*} [options.data] Optional data to send to the server with the request.
  * @param {'form'|'json'} [options.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @param {OutgoingHttpHeaders} [options.headers] Headers to use for the request.
- * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
+ * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response. Default `true`.
  * @param {string} [options.method="POST"] What HTTP method to use to send data. Default `POST`.
+ * @param {number} [options.timeout] Timeout after which the request should cancel.
    */
   async bqt(location, options = {}) {
     const { body } = await this._request(location, {
@@ -62,8 +64,9 @@ export default class Session {
  * @param {*} [options.data] Optional data to send to the server with the request.
  * @param {'form'|'json'} [options.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @param {OutgoingHttpHeaders} [options.headers] Headers to use for the request.
- * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
+ * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response. Default `true`.
  * @param {string} [options.method="POST"] What HTTP method to use to send data. Default `POST`.
+ * @param {number} [options.timeout] Timeout after which the request should cancel.
    */
   async jqt(location, options = {}) {
     const { body } = await this._request(location, options)
@@ -84,8 +87,9 @@ export default class Session {
  * @param {Object} options.data Optional data to send to the server with the request.
  * @param {'form'|'json'} [options.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @param {OutgoingHttpHeaders} [options.headers] Headers to use for the request.
- * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
- * @param {string} [options.headers="POST"] What HTTP method to use to send data. Default `POST`.
+ * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response. Default `true`.
+ * @param {number} [options.timeout] The timeout after which the request should fail.
+ * @param {string} [options.method="POST"] What HTTP method to use to send data. Default `POST`.
  * @param {boolean} [options.binary=false] Whether to return a buffer instead of a string. Default `false`.
  * @param {boolean} [options.justHeaders=false] Whether to stop the request after response headers were received, without waiting for the data. Default `false`.
    */
@@ -177,8 +181,9 @@ const extractCookies = ({ 'set-cookie': setCookie = [] } = {}) => {
  * @prop {*} [data] Optional data to send to the server with the request.
  * @prop {'form'|'json'} [type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @prop {OutgoingHttpHeaders} [headers] Headers to use for the request.
- * @prop {boolean} [compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
+ * @prop {boolean} [compress=true] Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response. Default `true`.
  * @prop {string} [method="POST"] What HTTP method to use to send data. Default `POST`.
+ * @prop {number} [timeout] Timeout after which the request should cancel.
  */
 
 /* documentary types/session.xml */
@@ -196,8 +201,9 @@ const extractCookies = ({ 'set-cookie': setCookie = [] } = {}) => {
  * @prop {Object} data Optional data to send to the server with the request.
  * @prop {'form'|'json'} [type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @prop {OutgoingHttpHeaders} [headers] Headers to use for the request.
- * @prop {boolean} [compress=true] Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. Default `true`.
- * @prop {string} [headers="POST"] What HTTP method to use to send data. Default `POST`.
+ * @prop {boolean} [compress=true] Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response. Default `true`.
+ * @prop {number} [timeout] The timeout after which the request should fail.
+ * @prop {string} [method="POST"] What HTTP method to use to send data. Default `POST`.
  * @prop {boolean} [binary=false] Whether to return a buffer instead of a string. Default `false`.
  * @prop {boolean} [justHeaders=false] Whether to stop the request after response headers were received, without waiting for the data. Default `false`.
  */

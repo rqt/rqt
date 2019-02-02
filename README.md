@@ -54,13 +54,14 @@ Each request function accept options to set headers and send data as the second 
 
 __<a name="type-options">`Options`</a>__: Options for requests.
 
-|   Name   |                        Type                        |                                                           Description                                                           | Default  |
-| -------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| data     | _*_                                                | Optional data to send to the server with the request.                                                                           | -        |
-| type     | _'form'\|'json'_                                   | How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default.            | `'json'` |
-| headers  | _[OutgoingHttpHeaders](#type-outgoinghttpheaders)_ | Headers to use for the request.                                                                                                 | -        |
-| compress | _boolean_                                          | Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. | `true`   |
-| method   | _string_                                           | What HTTP method to use to send data.                                                                                           | `POST`   |
+|   Name   |                        Type                        |                                                     Description                                                      | Default  |
+| -------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------- |
+| data     | _*_                                                | Optional data to send to the server with the request.                                                                | -        |
+| type     | _'form'\|'json'_                                   | How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. | `'json'` |
+| headers  | _[OutgoingHttpHeaders](#type-outgoinghttpheaders)_ | Headers to use for the request.                                                                                      | -        |
+| compress | _boolean_                                          | Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response.    | `true`   |
+| method   | _string_                                           | What HTTP method to use to send data.                                                                                | `POST`   |
+| timeout  | _number_                                           | Timeout after which the request should cancel.                                                                       | -        |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true"></a></p>
 
@@ -212,15 +213,16 @@ Request a web page and return additional information about the request. This met
 
 __<a name="type-aqtoptions">`AqtOptions`</a>__: Configuration for requests.
 
-|    Name     |                        Type                        |                                                           Description                                                           | Default  |
-| ----------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| __data*__   | _Object_                                           | Optional data to send to the server with the request.                                                                           | -        |
-| type        | _'form'\|'json'_                                   | How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default.            | `'json'` |
-| headers     | _[OutgoingHttpHeaders](#type-outgoinghttpheaders)_ | Headers to use for the request.                                                                                                 | -        |
-| compress    | _boolean_                                          | Add the `Accept-Encoding: gzip, deflate` header automatically to indicate to the server that it can send a compressed response. | `true`   |
-| method      | _string_                                           | What HTTP method to use to send data.                                                                                           | `POST`   |
-| binary      | _boolean_                                          | Whether to return a buffer instead of a string.                                                                                 | `false`  |
-| justHeaders | _boolean_                                          | Whether to stop the request after response headers were received, without waiting for the data.                                 | `false`  |
+|    Name     |                        Type                        |                                                     Description                                                      | Default  |
+| ----------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------- |
+| __data*__   | _Object_                                           | Optional data to send to the server with the request.                                                                | -        |
+| type        | _'form'\|'json'_                                   | How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. | `'json'` |
+| headers     | _[OutgoingHttpHeaders](#type-outgoinghttpheaders)_ | Headers to use for the request.                                                                                      | -        |
+| compress    | _boolean_                                          | Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response.    | `true`   |
+| timeout     | _number_                                           | The timeout after which the request should fail.                                                                     | -        |
+| method      | _string_                                           | What HTTP method to use to send data.                                                                                | `POST`   |
+| binary      | _boolean_                                          | Whether to return a buffer instead of a string.                                                                      | `false`  |
+| justHeaders | _boolean_                                          | Whether to stop the request after response headers were received, without waiting for the data.                      | `false`  |
 
 `import('http').IncomingHttpHeaders` __<a name="type-incominghttpheaders">`IncomingHttpHeaders`</a>__
 
@@ -368,6 +370,26 @@ Request a page and return parsed body, headers and status.
 
 ## Copyright
 
-(c) [Rqt](https://rqt.biz) 2019
+<table>
+  <tr>
+    <th>
+      <a href="https://artd.eco">
+        <img src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png" alt="Art Deco" />
+      </a>
+    </th>
+    <th>
+      © <a href="https://artd.eco">Art Deco</a> for <a href="https://rqt.biz">Rqt</a>
+      2019
+    </th>
+    <th>
+      <a href="https://www.technation.sucks" title="Tech Nation Visa">
+        <img src="https://raw.githubusercontent.com/artdecoweb/www.technation.sucks/master/anim.gif" alt="Tech Nation Visa" />
+      </a>
+    </th>
+    <th>
+      <a href="https://www.technation.sucks">Tech Nation Visa Sucks</a>
+    </th>
+  </tr>
+</table>
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/-1.svg?sanitize=true"></a></p>
