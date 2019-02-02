@@ -1,6 +1,6 @@
 {
   "name": "rqt",
-  "version": "3.0.4",
+  "version": "3.1.0",
   "description": "Easy-To-Use Request Library That Supports String, JSON And Buffer Requests, Timeouts, GZip Compression And Session Maintenance.",
   "main": "build",
   "module": "src/index.js",
