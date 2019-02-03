@@ -1,5 +1,9 @@
 ## 3 February 2019
 
+### 3.1.2
+
+- [fix] Update `@rqt/aqt` to set the method even with an empty body.
+
 ### 3.1.1
 
 - [fix] Update `@rqt/aqt` to skip parsing empty `JSON` response.
