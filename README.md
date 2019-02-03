@@ -60,7 +60,7 @@ __<a name="type-options">`Options`</a>__: Options for requests.
 | type     | _'form'\|'json'_                                   | How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. | `'json'` |
 | headers  | _[OutgoingHttpHeaders](#type-outgoinghttpheaders)_ | Headers to use for the request.                                                                                      | -        |
 | compress | _boolean_                                          | Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response.    | `true`   |
-| method   | _string_                                           | What HTTP method to use to send data.                                                                                | `POST`   |
+| method   | _string_                                           | What HTTP method to use in making of the request. When no method is given and `data` is present, defaults to `POST`. | -        |
 | timeout  | _number_                                           | Timeout after which the request should cancel.                                                                       | -        |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true"></a></p>
@@ -220,7 +220,7 @@ __<a name="type-aqtoptions">`AqtOptions`</a>__: Configuration for requests.
 | headers     | _[OutgoingHttpHeaders](#type-outgoinghttpheaders)_ | Headers to use for the request.                                                                                      | -        |
 | compress    | _boolean_                                          | Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response.    | `true`   |
 | timeout     | _number_                                           | The timeout after which the request should fail.                                                                     | -        |
-| method      | _string_                                           | What HTTP method to use to send data.                                                                                | `POST`   |
+| method      | _string_                                           | What HTTP method to use in making of the request. When no method is given and `data` is present, defaults to `POST`. | -        |
 | binary      | _boolean_                                          | Whether to return a buffer instead of a string.                                                                      | `false`  |
 | justHeaders | _boolean_                                          | Whether to stop the request after response headers were received, without waiting for the data.                      | `false`  |
 

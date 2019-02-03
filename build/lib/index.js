@@ -8,7 +8,7 @@ let aqt = require('@rqt/aqt'); if (aqt && aqt.__esModule) aqt = aqt.default;
  * @param {'form'|'json'} [options.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @param {OutgoingHttpHeaders} [options.headers] Headers to use for the request.
  * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response. Default `true`.
- * @param {string} [options.method="POST"] What HTTP method to use to send data. Default `POST`.
+ * @param {string} [options.method] What HTTP method to use in making of the request. When no method is given and `data` is present, defaults to `POST`.
  * @param {number} [options.timeout] Timeout after which the request should cancel.
  */
        const rqt = async (address, options = {}) => {
@@ -26,7 +26,7 @@ let aqt = require('@rqt/aqt'); if (aqt && aqt.__esModule) aqt = aqt.default;
  * @param {'form'|'json'} [options.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @param {OutgoingHttpHeaders} [options.headers] Headers to use for the request.
  * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response. Default `true`.
- * @param {string} [options.method="POST"] What HTTP method to use to send data. Default `POST`.
+ * @param {string} [options.method] What HTTP method to use in making of the request. When no method is given and `data` is present, defaults to `POST`.
  * @param {number} [options.timeout] Timeout after which the request should cancel.
  */
        const jqt = async (address, options = {}) => {
@@ -44,7 +44,7 @@ let aqt = require('@rqt/aqt'); if (aqt && aqt.__esModule) aqt = aqt.default;
  * @param {'form'|'json'} [options.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @param {OutgoingHttpHeaders} [options.headers] Headers to use for the request.
  * @param {boolean} [options.compress=true] Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response. Default `true`.
- * @param {string} [options.method="POST"] What HTTP method to use to send data. Default `POST`.
+ * @param {string} [options.method] What HTTP method to use in making of the request. When no method is given and `data` is present, defaults to `POST`.
  * @param {number} [options.timeout] Timeout after which the request should cancel.
  */
        const bqt = async (address, options) => {
@@ -66,7 +66,7 @@ let aqt = require('@rqt/aqt'); if (aqt && aqt.__esModule) aqt = aqt.default;
  * @param {'form'|'json'} [config.type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @param {OutgoingHttpHeaders} [config.headers] Headers to use for the request.
  * @param {boolean} [config.compress=true] Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response. Default `true`.
- * @param {string} [config.method="POST"] What HTTP method to use to send data. Default `POST`.
+ * @param {string} [config.method] What HTTP method to use in making of the request. When no method is given and `data` is present, defaults to `POST`.
  * @param {number} [config.timeout] Timeout after which the request should cancel.
  */
        const srqt = async (address, config) => {
@@ -85,7 +85,7 @@ let aqt = require('@rqt/aqt'); if (aqt && aqt.__esModule) aqt = aqt.default;
  * @prop {'form'|'json'} [type="'json'"] How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. Default `'json'`.
  * @prop {OutgoingHttpHeaders} [headers] Headers to use for the request.
  * @prop {boolean} [compress=true] Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response. Default `true`.
- * @prop {string} [method="POST"] What HTTP method to use to send data. Default `POST`.
+ * @prop {string} [method] What HTTP method to use in making of the request. When no method is given and `data` is present, defaults to `POST`.
  * @prop {number} [timeout] Timeout after which the request should cancel.
  */
 

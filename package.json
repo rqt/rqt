@@ -55,6 +55,6 @@
     "zoroaster": "3.6.6"
   },
   "dependencies": {
-    "@rqt/aqt": "1.2.2"
+    "@rqt/aqt": "1.2.3"
   }
 }

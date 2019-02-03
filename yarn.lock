@@ -81,10 +81,10 @@
   dependencies:
     vary "^1.1.2"
 
-"@rqt/aqt@1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@rqt/aqt/-/aqt-1.2.2.tgz#2000c010374448e4ddd7e986da787a06016a21a5"
-  integrity sha512-B9lg3PO3SxABHf3hFnHho7bqJZFoONYKvRuL4sjZ9hM+ucPN/3qbt29ky8NTOxTW8g2w3Gr/sJkqk1M5iclNMg==
+"@rqt/aqt@1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@rqt/aqt/-/aqt-1.2.3.tgz#e0ab9b60ae2dacac56dc6b34da26a0ee0cf71f09"
+  integrity sha512-fogSANLJ2YKsX7XWFgf5rXhVzOGluUx6fLnGueee1sCe34GHG/mpgsJuUrPgEsXEYtbsms3cgpiYEeo02Pa5CQ==
   dependencies:
     catchment "3.2.2"
     erotic "2.0.2"
