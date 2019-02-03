@@ -1,3 +1,9 @@
+## 3 February 2019
+
+### 3.1.1
+
+- [fix] Update `@rqt/aqt` to skip parsing empty `JSON` response.
+
 ## 2 February 2019
 
 ### 3.1.0
