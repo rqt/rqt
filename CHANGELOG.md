@@ -1,3 +1,9 @@
+## 16 April 2019
+
+### [3.1.3](https://github.com/rqt/rqt/compare/v3.1.2...v3.1.3)
+
+- [deps] Update `aqt` to handle cases when no _Content-Type_ is returned; unfix deps.
+
 ## 3 February 2019
 
 ### 3.1.2
