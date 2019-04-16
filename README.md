@@ -50,18 +50,18 @@ import rqt, { jqt, bqt, aqt, Session } from 'rqt'
 
 Each request function accept options to set headers and send data as the second argument after the URL.
 
-`import('http').OutgoingHttpHeaders` __<a name="type-outgoinghttpheaders">`OutgoingHttpHeaders`</a>__
+`import('http').OutgoingHttpHeaders` __<a name="type-httpoutgoinghttpheaders">`http.OutgoingHttpHeaders`</a>__
 
 __<a name="type-options">`Options`</a>__: Options for requests.
 
-|   Name   |                        Type                        |                                                     Description                                                      | Default  |
-| -------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------- |
-| data     | _*_                                                | Optional data to send to the server with the request.                                                                | -        |
-| type     | _'form'\|'json'_                                   | How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. | `'json'` |
-| headers  | _[OutgoingHttpHeaders](#type-outgoinghttpheaders)_ | Headers to use for the request.                                                                                      | -        |
-| compress | _boolean_                                          | Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response.    | `true`   |
-| method   | _string_                                           | What HTTP method to use in making of the request. When no method is given and `data` is present, defaults to `POST`. | -        |
-| timeout  | _number_                                           | Timeout after which the request should cancel.                                                                       | -        |
+|   Name   |                            Type                             |                                                     Description                                                      | Default  |
+| -------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------- |
+| data     | _*_                                                         | Optional data to send to the server with the request.                                                                | -        |
+| type     | _'form' \| 'json'_                                          | How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. | `'json'` |
+| headers  | _[http.OutgoingHttpHeaders](#type-httpoutgoinghttpheaders)_ | Headers to use for the request.                                                                                      | -        |
+| compress | _boolean_                                                   | Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response.    | `true`   |
+| method   | _string_                                                    | What HTTP method to use in making of the request. When no method is given and `data` is present, defaults to `POST`. | -        |
+| timeout  | _number_                                                    | Timeout after which the request should cancel.                                                                       | -        |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true"></a></p>
 
@@ -209,31 +209,31 @@ const Request = async (url) => {
 
 Request a web page and return additional information about the request. This method is also available as a standalone package: [`@rqt/aqt`](https://github.com/rqt/aqt).
 
-`import('http').OutgoingHttpHeaders` __<a name="type-outgoinghttpheaders">`OutgoingHttpHeaders`</a>__
+`import('http').OutgoingHttpHeaders` __<a name="type-httpoutgoinghttpheaders">`http.OutgoingHttpHeaders`</a>__
 
 __<a name="type-aqtoptions">`AqtOptions`</a>__: Configuration for requests.
 
-|    Name     |                        Type                        |                                                     Description                                                      | Default  |
-| ----------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------- |
-| __data*__   | _Object_                                           | Optional data to send to the server with the request.                                                                | -        |
-| type        | _'form'\|'json'_                                   | How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. | `'json'` |
-| headers     | _[OutgoingHttpHeaders](#type-outgoinghttpheaders)_ | Headers to use for the request.                                                                                      | -        |
-| compress    | _boolean_                                          | Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response.    | `true`   |
-| timeout     | _number_                                           | The timeout after which the request should fail.                                                                     | -        |
-| method      | _string_                                           | What HTTP method to use in making of the request. When no method is given and `data` is present, defaults to `POST`. | -        |
-| binary      | _boolean_                                          | Whether to return a buffer instead of a string.                                                                      | `false`  |
-| justHeaders | _boolean_                                          | Whether to stop the request after response headers were received, without waiting for the data.                      | `false`  |
+|    Name     |                            Type                             |                                                     Description                                                      | Default  |
+| ----------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------- |
+| __data*__   | _Object_                                                    | Optional data to send to the server with the request.                                                                | -        |
+| type        | _'form' \| 'json'_                                          | How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default. | `'json'` |
+| headers     | _[http.OutgoingHttpHeaders](#type-httpoutgoinghttpheaders)_ | Headers to use for the request.                                                                                      | -        |
+| compress    | _boolean_                                                   | Add the `Accept-Encoding: gzip, deflate` header to indicate to the server that it can send a compressed response.    | `true`   |
+| timeout     | _number_                                                    | The timeout after which the request should fail.                                                                     | -        |
+| method      | _string_                                                    | What HTTP method to use in making of the request. When no method is given and `data` is present, defaults to `POST`. | -        |
+| binary      | _boolean_                                                   | Whether to return a buffer instead of a string.                                                                      | `false`  |
+| justHeaders | _boolean_                                                   | Whether to stop the request after response headers were received, without waiting for the data.                      | `false`  |
 
-`import('http').IncomingHttpHeaders` __<a name="type-incominghttpheaders">`IncomingHttpHeaders`</a>__
+`import('http').IncomingHttpHeaders` __<a name="type-httpincominghttpheaders">`http.IncomingHttpHeaders`</a>__
 
 __<a name="type-aqtreturn">`AqtReturn`</a>__
 
-|        Name        |                        Type                        |                                                                                                                    Description                                                                                                                     |
-| ------------------ | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| __body*__          | _string\|object\|Buffer_                           | The return from the server. In case the `json` content-type was set by the server, the response will be parsed into an object. If `binary` option was used for the request, a `Buffer` will be returned. Otherwise, a string response is returned. |
-| __headers*__       | _[IncomingHttpHeaders](#type-incominghttpheaders)_ | Incoming headers returned by the server.                                                                                                                                                                                                           |
-| __statusCode*__    | _number_                                           | The status code returned by the server.                                                                                                                                                                                                            |
-| __statusMessage*__ | _string_                                           | The status message set by the server.                                                                                                                                                                                                              |
+|        Name        |                            Type                             |                                                                                                                    Description                                                                                                                     |
+| ------------------ | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| __body*__          | _string \| Object \| Buffer_                                | The return from the server. In case the `json` content-type was set by the server, the response will be parsed into an object. If `binary` option was used for the request, a `Buffer` will be returned. Otherwise, a string response is returned. |
+| __headers*__       | _[http.IncomingHttpHeaders](#type-httpincominghttpheaders)_ | Incoming headers returned by the server.                                                                                                                                                                                                           |
+| __statusCode*__    | _number_                                                    | The status code returned by the server.                                                                                                                                                                                                            |
+| __statusMessage*__ | _string_                                                    | The status message set by the server.                                                                                                                                                                                                              |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true"></a></p>
 
@@ -247,10 +247,10 @@ Create an instance of the _Session_ class. All headers specified in the construc
 
 __<a name="type-sessionoptions">`SessionOptions`</a>__: Options for a session.
 
-|  Name   |                        Type                        |                      Description                       |
-| ------- | -------------------------------------------------- | ------------------------------------------------------ |
-| host    | _string_                                           | The prefix to each request, such as `https://rqt.biz`. |
-| headers | _[OutgoingHttpHeaders](#type-outgoinghttpheaders)_ | Headers to use for each request.                       |
+|  Name   |         Type          |                      Description                       |
+| ------- | --------------------- | ------------------------------------------------------ |
+| host    | _string_              | The prefix to each request, such as `https://rqt.biz`. |
+| headers | _OutgoingHttpHeaders_ | Headers to use for each request.                       |
 
 The methods in the _Session_ class are proxied to the respective methods in the API, but the cookies and session's headers will be set automatically.
 
@@ -377,18 +377,14 @@ Request a page and return parsed body, headers and status.
         <img src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png" alt="Art Deco" />
       </a>
     </th>
-    <th>
-      © <a href="https://artd.eco">Art Deco</a> for <a href="https://rqt.biz">Rqt</a>
-      2019
-    </th>
+    <th>© <a href="https://artd.eco">Art Deco</a> for <a href="https://rqt.biz">Rqt</a> 2019</th>
     <th>
       <a href="https://www.technation.sucks" title="Tech Nation Visa">
-        <img src="https://raw.githubusercontent.com/artdecoweb/www.technation.sucks/master/anim.gif" alt="Tech Nation Visa" />
+        <img src="https://raw.githubusercontent.com/artdecoweb/www.technation.sucks/master/anim.gif"
+          alt="Tech Nation Visa" />
       </a>
     </th>
-    <th>
-      <a href="https://www.technation.sucks">Tech Nation Visa Sucks</a>
-    </th>
+    <th><a href="https://www.technation.sucks">Tech Nation Visa Sucks</a></th>
   </tr>
 </table>
 

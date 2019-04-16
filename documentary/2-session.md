@@ -14,13 +14,13 @@ Create an instance of the _Session_ class. All headers specified in the construc
 
 The methods in the _Session_ class are proxied to the respective methods in the API, but the cookies and session's headers will be set automatically.
 
-%EXAMPLE: example/Session/index.js, ../../src => rqt%
-%FORK example example/Session%
+%EXAMPLE: example/Session/index, ../../src => rqt%
+%FORK example/Session%
 
 <details>
 <summary>Show Server</summary>
 
-%EXAMPLE: example/Session/server.js%
+%EXAMPLE: example/Session/server%
 </details>
 
 ```#### async rqt => String

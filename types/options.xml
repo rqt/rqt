@@ -7,7 +7,7 @@
     <prop name="type" type="'form'|'json'" default="'json'">
       How to send data: `json` to serialise JSON data and `form` for url-encoded transmission with `json` mode by default.
     </prop>
-    <prop opt type="OutgoingHttpHeaders" name="headers">
+    <prop opt type="http.OutgoingHttpHeaders" name="headers">
       Headers to use for the request.
     </prop>
     <prop boolean name="compress" default="true">

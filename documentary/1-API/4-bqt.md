@@ -7,7 +7,7 @@
 
 Request a web page, and return the result as a buffer.
 
-%EXAMPLE: example/bqt.js, ../src => rqt%
-%FORK example example/bqt.js%
+%EXAMPLE: example/bqt, ../src => rqt%
+%FORK example/bqt%
 
 %~%
