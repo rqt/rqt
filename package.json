@@ -9,10 +9,8 @@
     "test": "yarn t test/spec",
     "test-build": "ALAMODE_ENV=test-build yarn test",
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
-    "d1": "NODE_DEBUG=doc doc src/index.js -g",
-    "d2": "NODE_DEBUG=doc doc src/lib/index.js -g",
-    "d3": "NODE_DEBUG=doc doc src/lib/Session.js -g",
-    "d": "yarn-s d1 d2 d3",
+    "d1": "NODE_DEBUG=doc typal src/index.js src/lib/index.js src/lib/Session.js -c",
+    "d": "yarn-s d1",
     "lint": "eslint .",
     "b": "alamode src -o build -s",
     "build": "yarn-s d b doc",
@@ -46,16 +44,16 @@
   },
   "homepage": "https://rqt.biz",
   "devDependencies": {
-    "@idio/core": "^1.3.6",
+    "@idio/idio": "^0.1.0",
     "@wrote/read": "^1.0.4",
-    "alamode": "^1.9.3",
-    "documentary": "^1.23.4",
+    "alamode": "^2.3.6",
+    "documentary": "^1.28.0",
     "eslint-config-artdeco": "1.0.1",
     "https-context": "^1.0.3",
     "yarn-s": "1.1.0",
-    "zoroaster": "^3.11.5"
+    "zoroaster": "^4.1.1-alpha"
   },
   "dependencies": {
-    "@rqt/aqt": "^1.2.5"
+    "@rqt/aqt": "^1.3.0"
   }
 }

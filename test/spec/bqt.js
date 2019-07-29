@@ -1,4 +1,4 @@
-import { deepEqual, ok } from 'zoroaster/assert'
+import { deepEqual, ok } from '@zoroaster/assert'
 import { bqt } from '../../src'
 import { HTTPContext } from 'https-context'
 

@@ -1,4 +1,4 @@
-import { equal, ok, deepEqual } from 'zoroaster/assert'
+import { equal, ok, deepEqual } from '@zoroaster/assert'
 import SessionServer from '../../context/SessionServer'
 import Session from '../../../src/lib/Session'
 

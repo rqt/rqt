@@ -1,4 +1,4 @@
-import { ok, equal } from 'zoroaster/assert'
+import { ok, equal } from '@zoroaster/assert'
 import { aqt } from '../../src'
 import { HTTPContext } from 'https-context'
 

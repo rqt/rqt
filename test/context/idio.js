@@ -1,12 +1,15 @@
 import read from '@wrote/read'
 import { join } from 'path'
-import idioCore from '@idio/core'
+import idio from '@idio/idio'
 
 const FIXTURE = join(__dirname, '../fixture')
 
 export default class IdioContext {
+  /**
+   * @param {import('@idio/idio').MiddlewareConfig} middleware
+   */
   async start(middleware = {}) {
-    const { url, app } = await idioCore({
+    const { url, app } = await idio({
       ...middleware,
       static: { use: true, root: FIXTURE },
     }, {

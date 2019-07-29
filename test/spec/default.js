@@ -1,4 +1,4 @@
-import { ok, assert, equal, deepEqual, throws } from 'zoroaster/assert'
+import { ok, assert, equal, deepEqual, throws } from '@zoroaster/assert'
 import rqt from '../../src'
 import { HTTPContext } from 'https-context'
 import { version } from '../../package.json'
