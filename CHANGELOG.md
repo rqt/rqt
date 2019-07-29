@@ -1,3 +1,9 @@
+## 29 July 2019
+
+### [3.1.4](https://github.com/rqt/rqt/compare/v3.1.3...v3.1.4)
+
+- [deps] Upgrade to compiled `aqt`.
+
 ## 16 April 2019
 
 ### [3.1.3](https://github.com/rqt/rqt/compare/v3.1.2...v3.1.3)
