@@ -1,4 +1,7 @@
-import idioCore from '@idio/core'
+import idioCore from '@idio/idio'
+import { collect } from 'catchment'
+import { parse } from 'querystring'
+
 /* start example */
 import { jqt } from '../src'
 
@@ -10,12 +13,15 @@ const Request = async (url) => {
 
 (async () => {
   const { url } = await idioCore({
-    bodyparser: { use: true },
-    async test(ctx, next) {
+    async bodyparser(ctx, next) {
+      const data = await collect(ctx.req)
+      if (data) ctx.request.body = parse(data)
+      await next()
+    },
+    test(ctx) {
       ctx.body = {
         Hello: 'World',
       }
-      await next()
     },
   }, { port: 5001 })
   await Request(url)

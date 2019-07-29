@@ -1,8 +1,9 @@
-import idioCore from '@idio/core'
+import idioCore from '@idio/idio'
+import { collect } from 'catchment'
+import { parse } from 'querystring'
 
 const Server = async () => {
-  const { url, app, router } = await idioCore({
-    /** @type {import('koa').Middleware} */
+  const { url, app } = await idioCore({
     async error(ctx, next) {
       try {
         await next()
@@ -12,35 +13,40 @@ const Server = async () => {
       }
     },
     session: { use: true, keys: ['example'] },
-    bodyparser: { use: true },
+    async bodyparser(ctx, next) {
+      const data = await collect(ctx.req)
+      if (data) ctx.request.body = parse(data)
+      await next()
+    },
   }, { port: 5002 })
-  router.get('/StartSession', async (ctx, next) => {
-    ctx.session.SessionKey = 'Example-4736gst4yd'
-    ctx.body = {
-      SessionKey: ctx.session.SessionKey,
+  app.use((ctx) => {
+    switch (ctx.path) {
+    case '/StartSession':
+      ctx.session.SessionKey = 'Example-4736gst4yd'
+      ctx.body = {
+        SessionKey: ctx.session.SessionKey,
+      }
+      break
+    case '/Login': {
+      const { sessionEncryptValue } = ctx.request.body
+      if (!sessionEncryptValue) {
+        throw new Error('Missing session key.')
+      }
+      if (sessionEncryptValue != ctx.session.SessionKey) {
+        throw new Error('Incorrect session key.')
+      }
+      ctx.session.user = ctx.request.body.LoginUserName
+      ctx.redirect('/Portal')
+      break
     }
-    await next()
+    case '/Portal':
+      if (!ctx.session.user) {
+        throw new Error('Not authorized.')
+      }
+      ctx.body = `Hello, ${ctx.session.user}`
+      break
+    }
   })
-  router.post('/Login', async (ctx, next) => {
-    const { sessionEncryptValue } = ctx.request.body
-    if (!sessionEncryptValue) {
-      throw new Error('Missing session key.')
-    }
-    if (sessionEncryptValue != ctx.session.SessionKey) {
-      throw new Error('Incorrect session key.')
-    }
-    ctx.session.user = ctx.request.body.LoginUserName
-    ctx.redirect('/Portal')
-    await next()
-  })
-  router.get('/Portal', async (ctx, next) => {
-    if (!ctx.session.user) {
-      throw new Error('Not authorized.')
-    }
-    ctx.body = `Hello, ${ctx.session.user}`
-    await next()
-  })
-  app.use(router.routes())
   return url
 }
 

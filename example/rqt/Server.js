@@ -1,11 +1,9 @@
-import idioCore from '@idio/core'
+import idioCore from '@idio/idio'
 
 const Server = async () => {
   const { url } = await idioCore({
-    /** @type {import('koa').Middleware} */
-    async hello(ctx, next) {
+    async hello(ctx) {
       ctx.body = 'Hello World'
-      await next()
     },
   }, { port: 0 })
   return url

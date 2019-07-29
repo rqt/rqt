@@ -1,5 +1,4 @@
 import idioCore from '@idio/idio'
-// import Nicer from 'nicer'
 import { collect } from 'catchment'
 import { parse } from 'querystring'
 
