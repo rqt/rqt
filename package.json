@@ -9,7 +9,7 @@
     "test": "yarn t test/spec",
     "test-build": "ALAMODE_ENV=test-build yarn test",
     "doc": "NODE_DEBUG=doc doc -o README.md -n _rqt",
-    "compile": "depack-dev src/depack.js -o compile/rqt.js -c -a -p -s --source_map_include_content",
+    "compile": "depack-dev src/depack.js -o compile/rqt.js -c -a -p -s --source_map_include_content -O 2018",
     "d1": "typal compile/template.js types/index.js",
     "d2": "typal compile/index.js -t types/SessionOptions.xml,node_modules/@rqt/aqt/types/index.xml -c",
     "template": "typal compile/template.js -T compile/index.js -t types/session.xml",

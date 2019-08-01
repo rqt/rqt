@@ -7,8 +7,8 @@ const url = require('url');
 const os = require('os');
 const zlib = require('zlib');
 const stream = require('stream');             
-const {request:u} = https;
-const {request:v} = http;
+const {request:t} = https;
+const {request:u} = http;
 const {debuglog:w} = util;
 const A = (a, b = 0, c = !1) => {
   if (0 === b && !c) {
@@ -30,13 +30,13 @@ const E = /\s+at.*(?:\(|\s)(.*)\)?/, I = /^(?:(?:(?:node|(?:internal\/[\w/]*|.*n
     }
     d = d[1];
     return d.includes(".app/Contents/Resources/electron.asar") || d.includes(".app/Contents/Resources/default_app.asar") ? !1 : !e.test(d);
-  }).filter(d => d.trim()).map(d => b ? d.replace(E, (f, k) => f.replace(k, k.replace(J, "~"))) : d).join("\n");
+  }).filter(d => d.trim()).map(d => b ? d.replace(E, (f, h) => f.replace(h, h.replace(J, "~"))) : d).join("\n");
 };
 function L(a, b, c = !1) {
   return function(e) {
     var d = C(arguments), {stack:f} = Error();
-    const k = A(f, 2, !0), l = (f = e instanceof Error) ? e.message : e;
-    d = [`Error: ${l}`, ...null !== d && a === d || c ? [b] : [k, b]].join("\n");
+    const h = A(f, 2, !0), l = (f = e instanceof Error) ? e.message : e;
+    d = [`Error: ${l}`, ...null !== d && a === d || c ? [b] : [h, b]].join("\n");
     d = K(d);
     return Object.assign(f ? e : Error(), {message:l, stack:d});
   };
@@ -57,30 +57,27 @@ const P = (a, b) => {
 };
 class Q extends O {
   constructor(a) {
-    var b = a || {}, c = Object.assign({}, b);
-    const e = void 0 === b.binary ? !1 : b.binary, d = void 0 === b.rs ? null : b.rs;
-    b = (delete c.binary, delete c.rs, c);
-    const {a:f = M(!0), proxyError:k} = a || {}, l = (n, q) => f(q);
-    super(b);
+    const {binary:b = !1, rs:c = null, ...e} = a || {}, {a:d = M(!0), proxyError:f} = a || {}, h = (l, n) => d(n);
+    super(e);
     this.b = [];
-    this.g = new Promise((n, q) => {
+    this.g = new Promise((l, n) => {
       this.on("finish", () => {
         let g;
-        e ? g = Buffer.concat(this.b) : g = this.b.join("");
-        n(g);
+        b ? g = Buffer.concat(this.b) : g = this.b.join("");
+        l(g);
         this.b = [];
       });
       this.once("error", g => {
         if (-1 == g.stack.indexOf("\n")) {
-          l`${g}`;
+          h`${g}`;
         } else {
-          const t = K(g.stack);
-          g.stack = t;
-          k && l`${g}`;
+          const r = K(g.stack);
+          g.stack = r;
+          f && h`${g}`;
         }
-        q(g);
+        n(g);
       });
-      d && P(this, d).pipe(this);
+      c && P(this, c).pipe(this);
     });
   }
   _write(a, b, c) {
@@ -91,50 +88,48 @@ class Q extends O {
     return this.g;
   }
 }
-const R = async(a, b) => {
-  b = void 0 === b ? {} : b;
-  ({c:a} = new Q(Object.assign({}, {rs:a}, b, {a:M(!0)})));
+const R = async(a, b = {}) => {
+  ({c:a} = new Q({rs:a, ...b, a:M(!0)}));
   return await a;
 };
 const {createGunzip:S} = zlib;
 const T = a => {
   ({"content-encoding":a} = a.headers);
   return "gzip" == a;
-}, U = (a, b, c) => {
-  c = void 0 === c ? {} : c;
+}, U = (a, b, c = {}) => {
   const {justHeaders:e, binary:d, a:f = M(!0)} = c;
-  let k, l, n, q, g = 0, t = 0;
+  let h, l, n, g, r = 0, v = 0;
   c = (new Promise((x, y) => {
-    k = a(b, async h => {
-      ({headers:l} = h);
-      const {statusMessage:p, statusCode:r} = h;
-      n = {statusMessage:p, statusCode:r};
+    h = a(b, async k => {
+      ({headers:l} = k);
+      const {statusMessage:p, statusCode:q} = k;
+      n = {statusMessage:p, statusCode:q};
       if (e) {
-        h.destroy();
+        k.destroy();
       } else {
-        var m = T(h);
-        h.on("data", z => g += z.byteLength);
-        h = m ? h.pipe(S()) : h;
-        q = await R(h, {binary:d});
-        t = q.length;
+        var m = T(k);
+        k.on("data", z => r += z.byteLength);
+        k = m ? k.pipe(S()) : k;
+        g = await R(k, {binary:d});
+        v = g.length;
       }
       x();
-    }).on("error", h => {
-      h = f(h);
-      y(h);
+    }).on("error", k => {
+      k = f(k);
+      y(k);
     }).on("timeout", () => {
-      k.abort();
+      h.abort();
     });
-  })).then(() => Object.assign({}, {body:q, headers:l}, n, {h:g, byteLength:t, f:null}));
-  return {i:k, c};
+  })).then(() => ({body:g, headers:l, ...n, h:r, byteLength:v, f:null}));
+  return {i:h, c};
 };
 const V = (a = {}) => Object.keys(a).reduce((b, c) => {
   const e = a[c];
   c = `${encodeURIComponent(c)}=${encodeURIComponent(e)}`;
   return [...b, c];
 }, []).join("&").replace(/%20/g, "+"), W = async(a, b, {data:c, justHeaders:e, binary:d, a:f = M(!0)}) => {
-  const {i:k, c:l} = U(a, b, {justHeaders:e, binary:d, a:f});
-  k.end(c);
+  const {i:h, c:l} = U(a, b, {justHeaders:e, binary:d, a:f});
+  h.end(c);
   a = await l;
   ({"content-type":b = ""} = a.headers);
   if ((b = b.startsWith("application/json")) && a.body) {
@@ -153,74 +148,63 @@ try {
 } catch (a) {
   X = "@aqt/rqt";
 }
-const aa = w("aqt"), Y = async(a, b) => {
-  b = void 0 === b ? {} : b;
-  const {data:c, type:e = "json", headers:d = {"User-Agent":`Mozilla/5.0 (Node.JS) ${X}`}, compress:f = !0, binary:k = !1, justHeaders:l = !1, method:n, timeout:q} = b;
+const aa = w("aqt"), Y = async(a, b = {}) => {
+  const {data:c, type:e = "json", headers:d = {"User-Agent":`Mozilla/5.0 (Node.JS) ${X}`}, compress:f = !0, binary:h = !1, justHeaders:l = !1, method:n, timeout:g} = b;
   b = M(!0);
-  const {hostname:g, protocol:t, port:x, path:y} = N(a), h = "https:" === t ? u : v, p = {hostname:g, port:x, path:y, headers:Object.assign({}, d), timeout:q, method:n};
+  const {hostname:r, protocol:v, port:x, path:y} = N(a), k = "https:" === v ? t : u, p = {hostname:r, port:x, path:y, headers:{...d}, timeout:g, method:n};
   if (c) {
-    var r = e;
+    var q = e;
     var m = c;
-    switch(r) {
+    switch(q) {
       case "json":
         m = JSON.stringify(m);
-        r = "application/json";
+        q = "application/json";
         break;
       case "form":
-        m = V(m), r = "application/x-www-form-urlencoded";
+        m = V(m), q = "application/x-www-form-urlencoded";
     }
-    m = {data:m, contentType:r};
-    ({data:r} = m);
+    m = {data:m, contentType:q};
+    ({data:q} = m);
     ({contentType:m} = m);
     p.method = n || "POST";
     "Content-Type" in p.headers || (p.headers["Content-Type"] = m);
-    "Content-Length" in p.headers || (p.headers["Content-Length"] = Buffer.byteLength(r));
+    "Content-Length" in p.headers || (p.headers["Content-Length"] = Buffer.byteLength(q));
   }
   !f || "Accept-Encoding" in p.headers || (p.headers["Accept-Encoding"] = "gzip, deflate");
-  const {body:z, headers:ba, byteLength:F, statusCode:ca, statusMessage:da, h:G, f:H} = await W(h, p, {data:r, justHeaders:l, binary:k, a:b});
+  const {body:z, headers:ba, byteLength:F, statusCode:ca, statusMessage:da, h:G, f:H} = await W(k, p, {data:q, justHeaders:l, binary:h, a:b});
   aa("%s %s B%s", a, F, `${F != G ? ` (raw ${G} B)` : ""}`);
   return {body:H ? H : z, headers:ba, statusCode:ca, statusMessage:da};
 };
-async function Z(a, b, c) {
-  c = void 0 === c ? {} : c;
-  b = a.host ? `${a.host}${b}` : b;
-  var e = a.headers;
-  var d = c;
-  c = a.Cookie;
-  var f = Object.assign({}, d);
-  d = void 0 === d.headers ? {} : d.headers;
-  f = (delete f.headers, f);
-  e = Object.assign({}, f, {headers:Object.assign({}, e, d, {Cookie:c})});
-  b = await Y(b, e);
-  ({headers:e} = b);
-  a.cookies = ea(a.cookies, e);
+async function Z(a, b, c = {}) {
+  {
+    const {headers:e = {}, ...d} = c;
+    c = {...d, headers:{...a.headers, ...e, Cookie:a.Cookie}};
+  }
+  b = await Y(a.host ? `${a.host}${b}` : b, c);
+  ({headers:c} = b);
+  a.cookies = ea(a.cookies, c);
   return b;
 }
 class fa {
-  constructor(a) {
-    a = void 0 === a ? {} : a;
+  constructor(a = {}) {
     const {host:b, headers:c = {}} = a;
     this.host = b;
     this.headers = c;
     this.cookies = {};
   }
-  async rqt(a, b) {
-    b = void 0 === b ? {} : b;
+  async rqt(a, b = {}) {
     ({body:a} = await Z(this, a, b));
     return a;
   }
-  async bqt(a, b) {
-    b = void 0 === b ? {} : b;
-    ({body:a} = await Z(this, a, Object.assign({}, b, {binary:!0})));
+  async bqt(a, b = {}) {
+    ({body:a} = await Z(this, a, {...b, binary:!0}));
     return a;
   }
-  async jqt(a, b) {
-    b = void 0 === b ? {} : b;
+  async jqt(a, b = {}) {
     ({body:a} = await Z(this, a, b));
     return a;
   }
-  async aqt(a, b) {
-    b = void 0 === b ? {} : b;
+  async aqt(a, b = {}) {
     return await Z(this, a, b);
   }
   get Cookie() {
@@ -232,35 +216,29 @@ const ha = a => Object.keys(a).reduce((b, c) => {
   return [...b, c];
 }, []).join("; "), ea = (a, b) => {
   b = ia(b);
-  const c = Object.assign({}, a, b);
+  const c = {...a, ...b};
   return Object.keys(c).reduce((e, d) => {
     const f = c[d];
-    return f ? Object.assign({}, e, {[d]:f}) : e;
+    return f ? {...e, [d]:f} : e;
   }, {});
-}, ia = a => {
-  ({"set-cookie":a = []} = void 0 === a ? {} : a);
-  return a.reduce((b, c) => {
-    {
-      const e = /^(.+?)=(.*?);/.exec(c);
-      if (!e) {
-        throw Error(`Could not extract a cookie from ${c}`);
-      }
-      const [, d, f] = e;
-      c = {[d]:f};
+}, ia = ({"set-cookie":a = []} = {}) => a.reduce((b, c) => {
+  {
+    const e = /^(.+?)=(.*?);/.exec(c);
+    if (!e) {
+      throw Error(`Could not extract a cookie from ${c}`);
     }
-    return Object.assign({}, b, c);
-  }, {});
-};
-module.exports = {_rqt:async(a, b) => {
-  b = void 0 === b ? {} : b;
+    const [, d, f] = e;
+    c = {[d]:f};
+  }
+  return {...b, ...c};
+}, {});
+module.exports = {_rqt:async(a, b = {}) => {
   ({body:a} = await Y(a, b));
   return a;
 }, _aqt:Y, _bqt:async(a, b) => {
-  b = Object.assign({}, b, {binary:!0});
-  ({body:a} = await Y(a, b));
+  ({body:a} = await Y(a, {...b, binary:!0}));
   return a;
-}, _jqt:async(a, b) => {
-  b = void 0 === b ? {} : b;
+}, _jqt:async(a, b = {}) => {
   ({body:a} = await Y(a, b));
   return a;
 }, _Session:fa};
