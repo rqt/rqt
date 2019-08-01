@@ -9,8 +9,10 @@ class Session extends _Session {
    */
   constructor(options) {
     super(options)
-    this.cookies = super.cookies
-    this.Cookie = super.Cookie
+    /**
+     * @fnType {_rqt.Session.cookies}
+     */
+    this.cookies = this.cookies
   }
   /**
    * @fnType {_rqt.Session.aqt}
@@ -35,6 +37,12 @@ class Session extends _Session {
    */
   bqt(location, options) {
     return super.bqt(location, options)
+  }
+  /**
+   * @fnType {_rqt.Session.Cookie}
+   */
+  get Cookie() {
+    return super.Cookie
   }
 }
 

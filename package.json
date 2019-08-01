@@ -7,7 +7,7 @@
   "scripts": {
     "t": "zoroaster -a",
     "test": "yarn t test/spec",
-    "test-build": "ALAMODE_ENV=test-build yarn test",
+    "test-compile": "ALAMODE_ENV=test-compile yarn test",
     "doc": "NODE_DEBUG=doc doc -o README.md -n _rqt",
     "compile": "depack-dev src/depack.js -o compile/rqt.js -c -a -p -s --source_map_include_content -O 2018",
     "d1": "typal compile/template.js types/index.js",
@@ -55,10 +55,11 @@
     "typal": "^1.19.0",
     "eslint-config-artdeco": "1.0.1",
     "https-context": "^1.0.3",
+    "@rqt/aqt": "^1.3.0",
     "yarn-s": "1.1.0",
     "zoroaster": "^4.1.1-alpha"
   },
-  "dependencies": {
+  "srcDependencies": {
     "@rqt/aqt": "^1.3.0"
   }
 }

@@ -11,8 +11,11 @@ class Session extends _Session {
    */
   constructor(options) {
     super(options)
-    this.cookies = super.cookies
-    this.Cookie = super.Cookie
+    /**
+     * Cookies as an object.
+     * @type {!Object}
+     */
+    this.cookies = this.cookies
   }
   /**
    * Make a request and return the body, headers and status.
@@ -81,6 +84,13 @@ class Session extends _Session {
    */
   bqt(location, options) {
     return super.bqt(location, options)
+  }
+  /**
+   * Cookies as a header.
+   * @type {string}
+   */
+  get Cookie() {
+    return super.Cookie
   }
 }
 

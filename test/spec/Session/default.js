@@ -1,6 +1,6 @@
 import { equal, deepEqual } from '@zoroaster/assert'
 import { HTTPContext } from 'https-context'
-import Session from '../../../src/lib/Session'
+import { Session } from '../../../src'
 
 /** @type {Object.<string, (h: HTTPContext)>} */
 const T = {
