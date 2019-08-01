@@ -33,7 +33,7 @@
       </arg>
       Make a request and return the parsed JSON body as an object.
     </fn>
-    <fn async name="aqt" return="string">
+    <fn async name="aqt" return="!_rqt.AqtReturn">
       <arg string name="location">
         The URL to which to make a request.
       </arg>
@@ -46,13 +46,4 @@
     <prop type="!Object" name="cookies">Cookies as an object.</prop>
     <prop string name="Cookie">Cookies as a header.</prop>
   </interface>
-
-  <type record name="SessionOptions" desc="Options for a session.">
-    <prop string opt name="host">
-      The prefix to each request, such as `https://rqt.biz`.
-    </prop>
-    <prop opt type="!http.OutgoingHttpHeaders" name="headers">
-      Headers to use for each request.
-    </prop>
-  </type>
 </types>

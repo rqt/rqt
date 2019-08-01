@@ -7,21 +7,6 @@
 /** @const */
 var _rqt = {}
 /**
- * Options for a session.
- * @record
- */
-_rqt.SessionOptions
-/**
- * The prefix to each request, such as `https://rqt.biz`.
- * @type {string|undefined}
- */
-_rqt.SessionOptions.prototype.host
-/**
- * Headers to use for each request.
- * @type {(!http.OutgoingHttpHeaders)|undefined}
- */
-_rqt.SessionOptions.prototype.headers
-/**
  * @param {!_rqt.SessionOptions} options The options for the session.
  * @interface
  */
@@ -61,6 +46,23 @@ _rqt.Session.prototype.jqt = function(location, options) {}
  * Make a request and return the body, headers and status.
  * @param {string} location The URL to which to make a request.
  * @param {!_rqt.AqtOptions} options Options for requests.
- * @return {!Promise<string>}
+ * @return {!Promise<!_rqt.AqtReturn>}
  */
 _rqt.Session.prototype.aqt = function(location, options) {}
+
+/* typal types/SessionOptions.xml externs */
+/**
+ * Options for a session.
+ * @record
+ */
+_rqt.SessionOptions
+/**
+ * The prefix to each request, such as `https://rqt.biz`.
+ * @type {string|undefined}
+ */
+_rqt.SessionOptions.prototype.host
+/**
+ * Headers to use for each request.
+ * @type {(!http.OutgoingHttpHeaders)|undefined}
+ */
+_rqt.SessionOptions.prototype.headers
