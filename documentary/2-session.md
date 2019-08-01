@@ -10,7 +10,7 @@ The _Session_ class allows to remember cookies set during all requests. It will 
 
 Create an instance of the _Session_ class. All headers specified in the constructor will be present for each request (unless overridden by individual request options).
 
-%TYPEDEF types/SessionOptions.xml%
+<typedef flatten>types/SessionOptions.xml</typedef>
 
 The methods in the _Session_ class are proxied to the respective methods in the API, but the cookies and session's headers will be set automatically.
 
@@ -23,34 +23,34 @@ The methods in the _Session_ class are proxied to the respective methods in the 
 %EXAMPLE: example/Session/server%
 </details>
 
-```#### async rqt => String
+```#### async rqt => string
 [
   ["location", "string"],
-  ["options?", "Options"]
+  ["options?", "AqtOptions"]
 ]
 ```
 
 Request a page as a string. All [options](#options-type) are the same as accepted by the `rqt` functions.
 
-```#### async jqt => String
+```#### async jqt => Object
 [
   ["location", "string"],
-  ["options?", "Options"]
+  ["options?", "AqtOptions"]
 ]
 ```
 
 Request a page as an object.
 
-```#### async bqt => String
+```#### async bqt => !Buffer
 [
   ["location", "string"],
-  ["options?", "Options"]
+  ["options?", "AqtOptions"]
 ]
 ```
 
 Request a page as a buffer.
 
-```#### async aqt => AqtReturn
+```#### async aqt => !AqtReturn
 [
   ["location", "string"],
   ["options?", "AqtOptions"]

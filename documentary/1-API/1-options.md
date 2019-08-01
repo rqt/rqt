@@ -2,7 +2,7 @@
 
 Each request function accept options to set headers and send data as the second argument after the URL.
 
-%TYPEDEF node_modules/@rqt/aqt/types/index.xml%
+<typedef narrow flatten>node_modules/@rqt/aqt/types/index.xml</typedef>
 
 <!-- %TYPE true
 <p name="data" type="object">

@@ -9,7 +9,8 @@ Request a web page and return additional information about the request. This met
 
 <!-- %TYPEDEF node_modules/@rqt/aqt/types/index.xml% -->
 
-%TYPEDEF node_modules/@rqt/aqt/types/return.xml%
+<typedef flatten>node_modules/@rqt/aqt/types/return.xml</typedef>
+<!-- %TYPEDEF node_modules/@rqt/aqt/types/return.xml% -->
 
 <!-- ```## async sqt => Readable
 [

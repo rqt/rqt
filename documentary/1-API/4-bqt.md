@@ -1,4 +1,4 @@
-```## async bqt => Buffer
+```## async bqt => !Buffer
 [
   ["url", "string"],
   ["options?", "Options"]

@@ -18,7 +18,7 @@ Request a web page, and return the result as a string.
 
 ---
 
-To send data to the server, add some [options](#options-type).
+To send data to the server, add some [options](#type-aqtoptions).
 
 %EXAMPLE: example/options/rqt, ../../../src => rqt%
 %FORK-json5 example/options/rqt%
