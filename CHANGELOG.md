@@ -1,3 +1,9 @@
+## 1 August 2019
+
+### [4.0.0](https://github.com/rqt/rqt/compare/v3.1.4...v4.0.0)
+
+- [package] Compile the module with [Depack](https://compiler.page).
+
 ## 29 July 2019
 
 ### [3.1.4](https://github.com/rqt/rqt/compare/v3.1.3...v3.1.4)
