@@ -21,6 +21,6 @@ import rqt, { jqt, bqt, aqt, Session } from 'rqt'
 ]
 ```
 
-%~%
+<!-- %~% -->
 
   <!-- ["`sqt`", "Stream Request", "Result is returned as a stream."], -->

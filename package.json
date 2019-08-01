@@ -8,7 +8,7 @@
     "t": "zoroaster -a",
     "test": "yarn t test/spec",
     "test-compile": "ALAMODE_ENV=test-compile yarn test",
-    "doc": "NODE_DEBUG=doc doc -o README.md -n _rqt",
+    "doc": "ALAMODE_ENV=test-compile NODE_DEBUG=doc doc -o README.md -n _rqt",
     "compile": "depack-dev src/depack.js -o compile/rqt.js -c -a -p -s --source_map_include_content -O 2018",
     "d1": "typal compile/template.js types/index.js",
     "d2": "typal compile/index.js -t types/SessionOptions.xml,node_modules/@rqt/aqt/types/index.xml -c",

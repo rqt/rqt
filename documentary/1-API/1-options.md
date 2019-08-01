@@ -1,8 +1,8 @@
-## `Options` Type
+<!-- ## `AqtOptions` Type -->
 
 Each request function accept options to set headers and send data as the second argument after the URL.
 
-%TYPEDEF types/options.xml%
+%TYPEDEF node_modules/@rqt/aqt/types/index.xml%
 
 <!-- %TYPE true
 <p name="data" type="object">

@@ -10,7 +10,7 @@ The _Session_ class allows to remember cookies set during all requests. It will 
 
 Create an instance of the _Session_ class. All headers specified in the constructor will be present for each request (unless overridden by individual request options).
 
-%TYPEDEF types/session.xml%
+%TYPEDEF types/SessionOptions.xml%
 
 The methods in the _Session_ class are proxied to the respective methods in the API, but the cookies and session's headers will be set automatically.
 

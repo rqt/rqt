@@ -7,7 +7,7 @@
 
 Request a web page and return additional information about the request. This method is also available as a standalone package: [`@rqt/aqt`](https://github.com/rqt/aqt).
 
-%TYPEDEF node_modules/@rqt/aqt/types/index.xml%
+<!-- %TYPEDEF node_modules/@rqt/aqt/types/index.xml% -->
 
 %TYPEDEF node_modules/@rqt/aqt/types/return.xml%
 
