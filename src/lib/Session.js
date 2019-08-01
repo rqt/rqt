@@ -148,5 +148,10 @@ const extractCookies = ({ 'set-cookie': setCookie = [] } = {}) => {
 
 /**
  * @suppress {nonStandardJsDocs}
+ * @typedef {import('../..').SessionOptions} _rqt.SessionOptions
+ */
+
+/**
+ * @suppress {nonStandardJsDocs}
  * @typedef {import('@rqt/aqt').AqtOptions} _rqt.AqtOptions
  */

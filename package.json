@@ -2,7 +2,7 @@
   "name": "rqt",
   "version": "3.1.4",
   "description": "Easy-To-Use Request Library That Supports String, JSON And Buffer Requests, Timeouts, GZip Compression And Session Maintenance.",
-  "main": "build",
+  "main": "compile/index.js",
   "module": "src/index.js",
   "scripts": {
     "t": "zoroaster -a",
@@ -13,7 +13,7 @@
     "d1": "typal compile/template.js types/index.js",
     "d2": "typal compile/index.js -t types/SessionOptions.xml,node_modules/@rqt/aqt/types/index.xml -c",
     "template": "typal compile/template.js -T compile/index.js -t types/session.xml",
-    "externs": "typal types/externs.js",
+    "externs": "typal types/externs.js types/vendor.js",
     "d": "yarn-s d1 externs template d2",
     "lint": "eslint .",
     "b": "alamode src -o build -s",
@@ -26,8 +26,14 @@
     "url": "git://github.com/rqt/rqt.git"
   },
   "files": [
-    "build",
-    "src"
+    "compile",
+    "src",
+    "types/externs.js",
+    "types/vendor.js"
+  ],
+  "externs": [
+    "types/externs.js",
+    "types/vendor.js"
   ],
   "keywords": [
     "request",

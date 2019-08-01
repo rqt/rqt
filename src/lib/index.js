@@ -3,7 +3,7 @@ import aqt from '@rqt/aqt'
 /**
  * Request an HTTP page and return the response body as a string.
  * @param {string} address Url such as http://example.com/api.
- * @param {_rqt.AqtOptions} [options] Options for requests.
+ * @param {!_rqt.AqtOptions} [options] Options for requests.
  */
 export const rqt = async (address, options = {}) => {
   const { body } = await aqt(address, options)
@@ -15,7 +15,7 @@ export const rqt = async (address, options = {}) => {
 /**
  * Request an HTTP page and return the response body as an object.
  * @param {string} address Url such as http://example.com/api.
- * @param {_rqt.AqtOptions} [options] Options for requests.
+ * @param {!_rqt.AqtOptions} [options] Options for requests.
  */
 export const jqt = async (address, options = {}) => {
   const { body } = await aqt(address, options)
@@ -27,7 +27,7 @@ export const jqt = async (address, options = {}) => {
 /**
  * Request a page and return the body as a buffer.
  * @param {string} address The URL such as http://example.com/api.
- * @param {_rqt.AqtOptions} [options] Options for requests.
+ * @param {!_rqt.AqtOptions} [options] Options for requests.
  */
 export const bqt = async (address, options) => {
   const c = {
@@ -35,7 +35,7 @@ export const bqt = async (address, options) => {
     binary: true,
   }
   const  { body } = await aqt(address, c)
-  /** @type {Buffer} */
+  /** @type {!Buffer} */
   const r = body
   return r
 }
