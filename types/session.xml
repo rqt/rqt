@@ -1,9 +1,57 @@
-<types>
-  <type name="SessionOptions" desc="Options for a session.">
+<types namespace="_rqt">
+  <import name="OutgoingHttpHeaders" from="http" />
+  <import name="IncomingHttpHeaders" from="http" />
+
+  <interface name="Session">
+    <arg type="!_rqt.SessionOptions" name="options">
+      The options for the session.
+    </arg>
+    <fn async name="rqt" return="string">
+      <arg string name="location">
+        The URL to which to make a request.
+      </arg>
+      <arg type="!_rqt.AqtOptions" name="options">
+        Options for requests.
+      </arg>
+      Make a request and return the body.
+    </fn>
+    <fn async name="bqt" return="!Buffer">
+      <arg string name="location">
+        The URL to which to make a request.
+      </arg>
+      <arg type="!_rqt.AqtOptions" name="options">
+        Options for requests.
+      </arg>
+      Make a request and return the body as buffer.
+    </fn>
+    <fn async name="jqt" return="!Object">
+      <arg string name="location">
+        The URL to which to make a request.
+      </arg>
+      <arg type="!_rqt.AqtOptions" name="options">
+        Options for requests.
+      </arg>
+      Make a request and return the parsed JSON body as an object.
+    </fn>
+    <fn async name="aqt" return="string">
+      <arg string name="location">
+        The URL to which to make a request.
+      </arg>
+      <arg type="!_rqt.AqtOptions" name="options">
+        Options for requests.
+      </arg>
+      Make a request and return the body, headers and status.
+    </fn>
+
+    <prop type="!Object" name="cookies">Cookies as an object.</prop>
+    <prop string name="Cookie">Cookies as a header.</prop>
+  </interface>
+
+  <type record name="SessionOptions" desc="Options for a session.">
     <prop string opt name="host">
       The prefix to each request, such as `https://rqt.biz`.
     </prop>
-    <prop opt type="OutgoingHttpHeaders" name="headers">
+    <prop opt type="!http.OutgoingHttpHeaders" name="headers">
       Headers to use for each request.
     </prop>
   </type>
